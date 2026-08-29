@@ -1,0 +1,41 @@
+:root {
+  /* Primitive palette: provisional Casa Mar colours. */
+  --ivory-50: #fffdf7;
+  --ivory-100: #f7f2e8;
+  --sand-200: #e8dfcf;
+  --sand-300: #d2c6b4;
+  --stone-500: #79766d;
+  --stone-700: #4e4d47;
+  --charcoal-800: #292a26;
+  --charcoal-900: #1b1c19;
+  --charcoal-950: #11120f;
+  --olive-400: #9aa475;
+  --olive-500: #707a4d;
+  --olive-600: #59623d;
+  --olive-700: #454d2f;
+
+  /* Semantic light theme. Components consume these tokens. */
+  --color-background: var(--ivory-100);
+  --color-surface: var(--ivory-50);
+  --color-surface-subtle: var(--sand-200);
+  --color-text: var(--charcoal-900);
+  --color-text-muted: var(--stone-700);
+  --color-accent: var(--olive-600);
+  --color-accent-hover: var(--olive-700);
+  --color-on-accent: var(--ivory-50);
+  --color-border: var(--sand-300);
+  --color-border-strong: var(--stone-500);
+  --color-focus: #215ea8;
+  --color-overlay: rgb(17 18 15 / 88%);
+  --color-hero-text: var(--ivory-50);
+  --color-hero-text-muted: #e1dbcf;
+  --color-hero-accent: #c3cd99;
+  --color-hero-line: rgb(255 253 247 / 42%);
+  --color-hero-overlay: linear-gradient(
+    115deg,
+    rgb(22 23 17 / 72%) 0%,
+    rgb(52 54 35 / 36%) 48%,
+    rgb(17 18 15 / 62%) 100%
+  );
+  --color-hero-scrim: linear-gradient(rgb(17 18 15 / 58%), transparent 10rem);
+}

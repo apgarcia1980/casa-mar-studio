@@ -1,0 +1,17 @@
+section {
+  min-block-size: min(40rem, calc(100svb - var(--header-block-size)));
+  padding-block: var(--section-gap-small);
+}
+
+.status {
+  margin: 0;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--type-display-lg);
+}
+
+h1 {
+  max-inline-size: 16ch;
+  margin-block: var(--space-3) var(--space-5);
+  font-size: var(--type-heading-1);
+}

@@ -1,0 +1,7 @@
+<a
+  [class]="'button-link button-link--' + variant()"
+  [routerLink]="path()"
+  [attr.aria-label]="accessibleName()"
+>
+  <ng-content />
+</a>

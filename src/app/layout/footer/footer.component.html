@@ -1,0 +1,25 @@
+<footer class="site-footer">
+  <div class="footer-inner container-page">
+    <div class="brand-block">
+      <p class="footer-wordmark">Casa Mar</p>
+      <p class="brand-note">{{ i18n.t('footer.brandNote') }}</p>
+    </div>
+
+    <nav class="footer-navigation" [attr.aria-label]="i18n.t('navigation.footer')">
+      <a [routerLink]="path(RouteId.Projects)">{{ i18n.t('navigation.projects') }}</a>
+      <a [routerLink]="path(RouteId.Spaces)">{{ i18n.t('navigation.spaces') }}</a>
+      <a [routerLink]="path(RouteId.Materials)">{{ i18n.t('navigation.materials') }}</a>
+      <a [routerLink]="path(RouteId.Studio)">{{ i18n.t('navigation.studio') }}</a>
+    </nav>
+
+    <div class="preferences">
+      <app-language-switcher />
+      <app-theme-switcher />
+    </div>
+
+    <div class="footer-meta">
+      <p>© Casa Mar Studio</p>
+      <p>{{ i18n.t('footer.brandingPlaceholder') }}</p>
+    </div>
+  </div>
+</footer>

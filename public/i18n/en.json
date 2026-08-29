@@ -1,0 +1,131 @@
+{
+  "accessibility": {
+    "homeLink": "Casa Mar Studio home",
+    "skipToContent": "Skip to content"
+  },
+  "brand": {
+    "wordmarkQualifier": "Studio"
+  },
+  "buttons": {
+    "disabled": "Unavailable",
+    "primary": "Primary action",
+    "secondary": "Secondary action",
+    "text": "Text action"
+  },
+  "designSystem": {
+    "body": "A working reference for the visual foundations of Casa Mar Studio. This route is a development tool, not a final production page.",
+    "colors": {
+      "accent": "Olive accent",
+      "background": "Ivory background",
+      "border": "Stone border",
+      "surface": "Warm white surface",
+      "text": "Charcoal text"
+    },
+    "eyebrow": "Development · Design System Preview",
+    "grid": {
+      "body": "Four columns on mobile, eight on tablet and twelve on desktop.",
+      "title": "Editorial grid"
+    },
+    "links": {
+      "editorial": "Editorial call to action",
+      "inline": "Inline links retain an underline",
+      "title": "Links"
+    },
+    "sections": {
+      "buttons": "Buttons",
+      "colors": "Colour system",
+      "containers": "Containers",
+      "spacing": "Spacing rhythm",
+      "typography": "Typography"
+    },
+    "spacing": {
+      "compact": "Compact",
+      "editorial": "Editorial",
+      "regular": "Regular"
+    },
+    "title": "Space, material and quiet precision",
+    "typography": {
+      "body": "Body text is tuned for sustained reading and constrained to an editorial measure of approximately sixty-eight characters.",
+      "displayLarge": "Mediterranean calm",
+      "displayMedium": "Architecture shaped by light",
+      "heading": "Materials with an honest presence",
+      "label": "Editorial label"
+    }
+  },
+  "errors": {
+    "notFound": {
+      "body": "The requested page does not exist or may have moved.",
+      "title": "Page not found"
+    }
+  },
+  "home": {
+    "hero": {
+      "demoLabel": "Visual study · Temporary demo poster",
+      "explore": "Explore",
+      "kicker": "Architecture · Interiors",
+      "pause": "Pause",
+      "pauseMotion": "Pause motion",
+      "play": "Play",
+      "playMotion": "Play motion",
+      "qualifier": "Studio",
+      "soundOff": "Sound off",
+      "soundOn": "Sound on",
+      "title": "Interiors shaped by light, material and place."
+    },
+    "intro": {
+      "body": "This concise introduction is provisional and will evolve when the approved studio narrative is available.",
+      "eyebrow": "01 / Studio",
+      "title": "A considered relationship between space, light and material."
+    }
+  },
+  "footer": {
+    "brandNote": "A provisional digital foundation for architecture, interiors and materiality.",
+    "brandingPlaceholder": "Temporary wordmark · brand identity pending"
+  },
+  "language": {
+    "label": "Choose language",
+    "switchToEnglish": "View this page in English",
+    "switchToSpanish": "View this page in Spanish"
+  },
+  "navigation": {
+    "close": "Close",
+    "closeMenu": "Close navigation menu",
+    "footer": "Footer navigation",
+    "materials": "Materials",
+    "menu": "Menu",
+    "mobileMenu": "Mobile navigation",
+    "openMenu": "Open navigation menu",
+    "primary": "Primary navigation",
+    "projects": "Projects",
+    "spaces": "Spaces",
+    "studio": "Studio"
+  },
+  "seo": {
+    "home": {
+      "description": "A provisional editorial introduction to Casa Mar Studio, architecture and interiors.",
+      "title": "Casa Mar Studio — Architecture and interiors"
+    },
+    "designSystem": {
+      "description": "Development preview of the Casa Mar Studio design system.",
+      "title": "Design System Preview — Casa Mar Studio"
+    },
+    "notFound": {
+      "description": "The requested page does not exist or may have moved.",
+      "title": "Page not found — Casa Mar Studio"
+    }
+  },
+  "shell": {
+    "language": "Language",
+    "technicalFoundation": "Technical foundation",
+    "theme": "Theme"
+  },
+  "theme": {
+    "label": "Colour theme",
+    "options": {
+      "dark": "Dark",
+      "highContrast": "High contrast",
+      "light": "Light",
+      "system": "System"
+    }
+  }
+}

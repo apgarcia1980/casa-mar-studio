@@ -1,0 +1,76 @@
+<header class="site-header" [class.site-header--overlay]="isHome()">
+  <div class="header-inner container-page">
+    <a
+      class="wordmark"
+      [routerLink]="path(RouteId.Home)"
+      [attr.aria-label]="i18n.t('accessibility.homeLink')"
+    >
+      <span>Casa Mar</span>
+      <small>{{ i18n.t('brand.wordmarkQualifier') }}</small>
+    </a>
+
+    <nav class="desktop-navigation" [attr.aria-label]="i18n.t('navigation.primary')">
+      @for (item of navigation; track item.routeId) {
+        <a [routerLink]="path(item.routeId)" routerLinkActive="active">{{ i18n.t(item.label) }}</a>
+      }
+    </nav>
+
+    <div class="desktop-actions">
+      <app-language-switcher />
+    </div>
+
+    <button
+      #menuTrigger
+      class="menu-trigger"
+      type="button"
+      aria-controls="mobile-navigation"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="i18n.t('navigation.openMenu')"
+      (click)="openMenu()"
+    >
+      <span>{{ i18n.t('navigation.menu') }}</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 7h18M3 12h18M3 17h18" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<dialog
+  #mobileMenu
+  id="mobile-navigation"
+  class="mobile-menu"
+  [attr.aria-label]="i18n.t('navigation.mobileMenu')"
+  (close)="onDialogClosed()"
+>
+  <div class="mobile-menu__inner">
+    <div class="mobile-menu__topline">
+      <span class="mobile-wordmark">Casa Mar</span>
+      <button
+        class="close-button"
+        type="button"
+        [attr.aria-label]="i18n.t('navigation.closeMenu')"
+        (click)="closeMenu()"
+      >
+        <span>{{ i18n.t('navigation.close') }}</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m5 5 14 14M19 5 5 19" />
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mobile-navigation" [attr.aria-label]="i18n.t('navigation.primary')">
+      @for (item of navigation; track item.routeId; let index = $index) {
+        <a [routerLink]="path(item.routeId)">
+          <span aria-hidden="true">0{{ index + 1 }}</span>
+          {{ i18n.t(item.label) }}
+        </a>
+      }
+    </nav>
+
+    <div class="mobile-preferences">
+      <app-language-switcher />
+      <app-theme-switcher />
+    </div>
+  </div>
+</dialog>

@@ -1,0 +1,131 @@
+{
+  "accessibility": {
+    "homeLink": "Inicio de Casa Mar Studio",
+    "skipToContent": "Saltar al contenido"
+  },
+  "brand": {
+    "wordmarkQualifier": "Estudio"
+  },
+  "buttons": {
+    "disabled": "No disponible",
+    "primary": "Acción principal",
+    "secondary": "Acción secundaria",
+    "text": "Acción de texto"
+  },
+  "designSystem": {
+    "body": "Una referencia activa de los fundamentos visuales de Casa Mar Studio. Esta ruta es una herramienta de desarrollo, no una página final de producción.",
+    "colors": {
+      "accent": "Acento oliva",
+      "background": "Fondo marfil",
+      "border": "Borde piedra",
+      "surface": "Superficie blanco cálido",
+      "text": "Texto carbón"
+    },
+    "eyebrow": "Desarrollo · Vista previa del sistema de diseño",
+    "grid": {
+      "body": "Cuatro columnas en móvil, ocho en tablet y doce en escritorio.",
+      "title": "Retícula editorial"
+    },
+    "links": {
+      "editorial": "Llamada editorial a la acción",
+      "inline": "Los enlaces en texto conservan el subrayado",
+      "title": "Enlaces"
+    },
+    "sections": {
+      "buttons": "Botones",
+      "colors": "Sistema de color",
+      "containers": "Contenedores",
+      "spacing": "Ritmo de espaciado",
+      "typography": "Tipografía"
+    },
+    "spacing": {
+      "compact": "Compacto",
+      "editorial": "Editorial",
+      "regular": "Regular"
+    },
+    "title": "Espacio, materia y precisión serena",
+    "typography": {
+      "body": "El texto de cuerpo está ajustado para una lectura sostenida y limitado a una medida editorial aproximada de sesenta y ocho caracteres.",
+      "displayLarge": "Calma mediterránea",
+      "displayMedium": "Arquitectura moldeada por la luz",
+      "heading": "Materiales con una presencia honesta",
+      "label": "Etiqueta editorial"
+    }
+  },
+  "errors": {
+    "notFound": {
+      "body": "La página solicitada no existe o puede haberse movido.",
+      "title": "Página no encontrada"
+    }
+  },
+  "home": {
+    "hero": {
+      "demoLabel": "Estudio visual · Poster demo temporal",
+      "explore": "Explorar",
+      "kicker": "Arquitectura · Interiorismo",
+      "pause": "Pausar",
+      "pauseMotion": "Pausar movimiento",
+      "play": "Reproducir",
+      "playMotion": "Reproducir movimiento",
+      "qualifier": "Estudio",
+      "soundOff": "Sonido desactivado",
+      "soundOn": "Sonido activado",
+      "title": "Interiores definidos por la luz, la materia y el lugar."
+    },
+    "intro": {
+      "body": "Esta introducción concisa es provisional y evolucionará cuando esté disponible el relato aprobado del estudio.",
+      "eyebrow": "01 / Estudio",
+      "title": "Una relación meditada entre espacio, luz y materia."
+    }
+  },
+  "footer": {
+    "brandNote": "Una base digital provisional para arquitectura, interiorismo y materialidad.",
+    "brandingPlaceholder": "Wordmark temporal · identidad de marca pendiente"
+  },
+  "language": {
+    "label": "Elegir idioma",
+    "switchToEnglish": "Ver esta página en inglés",
+    "switchToSpanish": "Ver esta página en español"
+  },
+  "navigation": {
+    "close": "Cerrar",
+    "closeMenu": "Cerrar menú de navegación",
+    "footer": "Navegación del pie de página",
+    "materials": "Materiales",
+    "menu": "Menú",
+    "mobileMenu": "Navegación móvil",
+    "openMenu": "Abrir menú de navegación",
+    "primary": "Navegación principal",
+    "projects": "Proyectos",
+    "spaces": "Espacios",
+    "studio": "Estudio"
+  },
+  "seo": {
+    "home": {
+      "description": "Una introducción editorial provisional a Casa Mar Studio, arquitectura e interiorismo.",
+      "title": "Casa Mar Studio — Arquitectura e interiorismo"
+    },
+    "designSystem": {
+      "description": "Vista previa de desarrollo del sistema de diseño de Casa Mar Studio.",
+      "title": "Vista previa del sistema de diseño — Casa Mar Studio"
+    },
+    "notFound": {
+      "description": "La página solicitada no existe o puede haberse movido.",
+      "title": "Página no encontrada — Casa Mar Studio"
+    }
+  },
+  "shell": {
+    "language": "Idioma",
+    "technicalFoundation": "Cimientos técnicos",
+    "theme": "Tema"
+  },
+  "theme": {
+    "label": "Tema de color",
+    "options": {
+      "dark": "Oscuro",
+      "highContrast": "Alto contraste",
+      "light": "Claro",
+      "system": "Sistema"
+    }
+  }
+}

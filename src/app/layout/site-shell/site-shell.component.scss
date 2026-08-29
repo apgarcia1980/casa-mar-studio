@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+  min-block-size: 100dvb;
+  grid-template-rows: auto 1fr auto;
+}
+
+main {
+  min-inline-size: 0;
+}

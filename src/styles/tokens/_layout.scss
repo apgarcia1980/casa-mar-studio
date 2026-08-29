@@ -1,0 +1,24 @@
+:root {
+  --container-page: 100rem;
+  --container-content: 72rem;
+  --container-narrow: 44rem;
+  --grid-columns: 4;
+  --grid-gutter: clamp(0.75rem, 0.5rem + 1.25vw, 2rem);
+  --header-block-size: 5rem;
+  --breakpoint-medium: 48rem;
+  --breakpoint-large: 64rem;
+  --breakpoint-wide: 90rem;
+}
+
+@media (width >= 48rem) {
+  :root {
+    --grid-columns: 8;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --grid-columns: 12;
+    --header-block-size: 6rem;
+  }
+}

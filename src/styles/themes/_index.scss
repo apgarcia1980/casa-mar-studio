@@ -1,0 +1,67 @@
+@mixin dark-theme {
+  color-scheme: dark;
+
+  --color-background: var(--charcoal-950);
+  --color-surface: var(--charcoal-900);
+  --color-surface-subtle: var(--charcoal-800);
+  --color-text: var(--ivory-100);
+  --color-text-muted: #cbc5b9;
+  --color-accent: #b8c489;
+  --color-accent-hover: #d1d9ad;
+  --color-on-accent: var(--charcoal-950);
+  --color-border: #4f5049;
+  --color-border-strong: #85877d;
+  --color-focus: #86bdff;
+  --color-overlay: rgb(17 18 15 / 96%);
+}
+
+@mixin high-contrast-theme {
+  color-scheme: dark;
+
+  --color-background: #000;
+  --color-surface: #000;
+  --color-surface-subtle: #151515;
+  --color-text: #fff;
+  --color-text-muted: #fff;
+  --color-accent: #ffeb3b;
+  --color-accent-hover: #fff176;
+  --color-on-accent: #000;
+  --color-border: #fff;
+  --color-border-strong: #fff;
+  --color-focus: #00e5ff;
+  --color-overlay: #000;
+  --border-thin: 0.125rem;
+  --focus-width: 0.25rem;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  @include dark-theme;
+}
+
+:root[data-theme='high-contrast'] {
+  @include high-contrast-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include dark-theme;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root:not([data-theme]) {
+    --color-border: currentcolor;
+    --color-border-strong: currentcolor;
+    --focus-width: 0.25rem;
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    forced-color-adjust: auto;
+  }
+}

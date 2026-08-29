@@ -1,0 +1,31 @@
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--type-label);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.1em;
+}
+
+a {
+  display: inline-flex;
+  min-inline-size: var(--target-min);
+  min-block-size: var(--target-min);
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+a[aria-current='page'] {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-accent);
+  }
+}

@@ -1,0 +1,60 @@
+@use 'fonts';
+@use 'tokens';
+@use 'themes';
+@use 'typography';
+@use 'accessibility';
+@use 'animations';
+@use 'utilities';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-inline-size: 20rem;
+  color-scheme: light;
+  background: var(--color-background);
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-block-size: 100dvb;
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: 0.075em;
+  text-underline-offset: 0.2em;
+}
+
+::selection {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-accent-hover);
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-inline-size: 100%;
+}

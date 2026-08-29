@@ -1,0 +1,119 @@
+<article class="design-preview">
+  <header class="preview-intro container-page">
+    <p class="eyebrow type-label">{{ i18n.t('designSystem.eyebrow') }}</p>
+    <h1 class="type-display-lg">{{ i18n.t('designSystem.title') }}</h1>
+    <p class="intro-copy type-body-lg text-measure">{{ i18n.t('designSystem.body') }}</p>
+    <app-theme-switcher />
+  </header>
+
+  <section class="preview-section container-page" aria-labelledby="colors-title">
+    <h2 id="colors-title" class="section-title type-heading-2">
+      {{ i18n.t('designSystem.sections.colors') }}
+    </h2>
+    <div class="swatches">
+      <figure class="swatch swatch--background">
+        <span></span>
+        <figcaption>{{ i18n.t('designSystem.colors.background') }}</figcaption>
+      </figure>
+      <figure class="swatch swatch--surface">
+        <span></span>
+        <figcaption>{{ i18n.t('designSystem.colors.surface') }}</figcaption>
+      </figure>
+      <figure class="swatch swatch--accent">
+        <span></span>
+        <figcaption>{{ i18n.t('designSystem.colors.accent') }}</figcaption>
+      </figure>
+      <figure class="swatch swatch--text">
+        <span></span>
+        <figcaption>{{ i18n.t('designSystem.colors.text') }}</figcaption>
+      </figure>
+      <figure class="swatch swatch--border">
+        <span></span>
+        <figcaption>{{ i18n.t('designSystem.colors.border') }}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="preview-section typography-samples container-page" aria-labelledby="type-title">
+    <h2 id="type-title" class="section-title type-heading-2">
+      {{ i18n.t('designSystem.sections.typography') }}
+    </h2>
+    <p class="type-label">{{ i18n.t('designSystem.typography.label') }}</p>
+    <p class="type-display-xl">{{ i18n.t('designSystem.typography.displayLarge') }}</p>
+    <p class="type-display-md">{{ i18n.t('designSystem.typography.displayMedium') }}</p>
+    <p class="type-heading-2">{{ i18n.t('designSystem.typography.heading') }}</p>
+    <p class="type-body-lg text-measure">{{ i18n.t('designSystem.typography.body') }}</p>
+  </section>
+
+  <section class="preview-section container-page" aria-labelledby="spacing-title">
+    <h2 id="spacing-title" class="section-title type-heading-2">
+      {{ i18n.t('designSystem.sections.spacing') }}
+    </h2>
+    <div class="spacing-samples">
+      <div>
+        <span class="space-bar space-bar--compact"></span>
+        <p>{{ i18n.t('designSystem.spacing.compact') }}</p>
+      </div>
+      <div>
+        <span class="space-bar space-bar--regular"></span>
+        <p>{{ i18n.t('designSystem.spacing.regular') }}</p>
+      </div>
+      <div>
+        <span class="space-bar space-bar--editorial"></span>
+        <p>{{ i18n.t('designSystem.spacing.editorial') }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section container-page" aria-labelledby="buttons-title">
+    <h2 id="buttons-title" class="section-title type-heading-2">
+      {{ i18n.t('designSystem.sections.buttons') }}
+    </h2>
+    <div class="component-row">
+      <app-button>{{ i18n.t('buttons.primary') }}</app-button>
+      <app-button variant="secondary">{{ i18n.t('buttons.secondary') }}</app-button>
+      <app-button variant="text">{{ i18n.t('buttons.text') }}</app-button>
+      <app-button [disabled]="true">{{ i18n.t('buttons.disabled') }}</app-button>
+      <app-button-link [path]="homePath" variant="secondary">{{
+        i18n.t('designSystem.links.editorial')
+      }}</app-button-link>
+    </div>
+  </section>
+
+  <section class="preview-section container-narrow links-sample" aria-labelledby="links-title">
+    <h2 id="links-title" class="section-title type-heading-2">
+      {{ i18n.t('designSystem.links.title') }}
+    </h2>
+    <p>
+      {{ i18n.t('designSystem.typography.body') }}
+      <a [href]="homePath">{{ i18n.t('designSystem.links.inline') }}</a
+      >.
+    </p>
+    <a class="editorial-link" [href]="homePath"
+      >{{ i18n.t('designSystem.links.editorial') }} <span aria-hidden="true">↗</span></a
+    >
+  </section>
+
+  <section class="preview-section container-page" aria-labelledby="containers-title">
+    <h2 id="containers-title" class="section-title type-heading-2">
+      {{ i18n.t('designSystem.sections.containers') }}
+    </h2>
+    <div class="container-demo container-content"><span>Content</span></div>
+    <div class="container-demo container-narrow"><span>Narrow</span></div>
+  </section>
+
+  <section class="preview-section grid-preview container-page" aria-labelledby="grid-title">
+    <h2 id="grid-title" class="type-heading-2">{{ i18n.t('designSystem.grid.title') }}</h2>
+    <p class="text-measure">{{ i18n.t('designSystem.grid.body') }}</p>
+    <div class="editorial-grid" aria-hidden="true">
+      @for (column of gridColumns; track $index) {
+        <span></span>
+      }
+    </div>
+  </section>
+
+  <section class="preview-section preferences-preview container-page">
+    <app-language-switcher />
+    <app-theme-switcher />
+  </section>
+</article>

@@ -1,0 +1,16 @@
+@forward 'colors';
+@forward 'typography';
+@forward 'spacing';
+@forward 'layout';
+@forward 'motion';
+@forward 'borders';
+@forward 'focus';
+@forward 'z-index';
+@use 'colors';
+@use 'typography';
+@use 'spacing';
+@use 'layout';
+@use 'motion';
+@use 'borders';
+@use 'focus';
+@use 'z-index';
