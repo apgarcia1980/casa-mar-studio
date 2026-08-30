@@ -17,6 +17,13 @@ import { Space } from '../../../spaces/models/space.model';
 export class SpacesStoryComponent {
   readonly spaces = input.required<readonly Space[]>();
   readonly locale = input.required<Locale>();
+  protected readonly backgroundTokens = [
+    '--color-background',
+    '--color-surface-subtle',
+    '--color-surface',
+    '--color-surface-subtle',
+    '--color-background',
+  ] as const;
 
   protected readonly revealItems = computed<readonly PinnedRevealItem[]>(() =>
     this.spaces().flatMap((space, index) => {

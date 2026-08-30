@@ -4,12 +4,14 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  effect,
   inject,
   input,
   signal,
   viewChild,
 } from '@angular/core';
 import { PlatformService } from '../../../core/platform/platform.service';
+import { ThemeService } from '../../../core/theme/theme.service';
 import { MediaAsset } from '../../content/media-asset';
 
 export interface PinnedRevealLink {
@@ -35,17 +37,30 @@ export interface PinnedRevealItem {
 })
 export class PinnedRevealComponent {
   private readonly platform = inject(PlatformService);
+  private readonly themeService = inject(ThemeService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly root = viewChild<ElementRef<HTMLElement>>('root');
   private animationCleanup: () => void = () => undefined;
+  private animationInitialized = false;
 
   readonly items = input.required<readonly PinnedRevealItem[]>();
   readonly headingLevel = input(3);
+  readonly backgroundTokens = input<readonly string[]>([]);
   protected readonly enhanced = signal(false);
 
   constructor() {
     afterNextRender(() => void this.initializePinnedReveal());
     this.destroyRef.onDestroy(() => this.animationCleanup());
+
+    effect(() => {
+      this.themeService.theme();
+      if (!this.animationInitialized) return;
+
+      this.animationCleanup();
+      this.animationCleanup = () => undefined;
+      this.enhanced.set(false);
+      requestAnimationFrame(() => void this.initializePinnedReveal());
+    });
   }
 
   protected stackOrder(index: number): number {
@@ -82,11 +97,16 @@ export class PinnedRevealComponent {
 
       gsap.registerPlugin(ScrollTrigger);
       this.enhanced.set(true);
+      const computedStyle = getComputedStyle(root);
+      const backgrounds = this.backgroundTokens()
+        .map((token) => computedStyle.getPropertyValue(token).trim())
+        .filter(Boolean);
 
       const media = gsap.matchMedia();
       media.add('(min-width: 64rem) and (prefers-reduced-motion: no-preference)', () => {
         const context = gsap.context(() => {
           gsap.set(images, { clipPath: 'inset(0% 0% 0% 0%)', objectPosition: 'center 50%' });
+          if (backgrounds.length) gsap.set(root, { backgroundColor: backgrounds[0] });
 
           const timeline = gsap.timeline({
             scrollTrigger: {
@@ -100,13 +120,19 @@ export class PinnedRevealComponent {
           });
 
           images.slice(0, -1).forEach((image, index) => {
-            timeline
-              .to(image, {
-                clipPath: 'inset(0% 0% 100% 0%)',
-                objectPosition: 'center 60%',
-                duration: 1.5,
-                ease: 'none',
-              })
+            const transition = gsap.timeline();
+
+            transition
+              .to(
+                image,
+                {
+                  clipPath: 'inset(0% 0% 100% 0%)',
+                  objectPosition: 'center 60%',
+                  duration: 1.5,
+                  ease: 'none',
+                },
+                0,
+              )
               .to(
                 images[index + 1],
                 {
@@ -114,8 +140,19 @@ export class PinnedRevealComponent {
                   duration: 1.5,
                   ease: 'none',
                 },
-                '<',
+                0,
               );
+
+            const nextBackground = backgrounds[Math.min(index + 1, backgrounds.length - 1)];
+            if (nextBackground) {
+              transition.to(root, {
+                backgroundColor: nextBackground,
+                duration: 1.5,
+                ease: 'power1.inOut',
+              }, 0);
+            }
+
+            timeline.add(transition);
           });
         }, root);
 
@@ -123,6 +160,7 @@ export class PinnedRevealComponent {
       });
 
       this.animationCleanup = () => media.revert();
+      this.animationInitialized = true;
       requestAnimationFrame(() => ScrollTrigger.refresh());
     } catch {
       this.enhanced.set(false);

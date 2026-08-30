@@ -2,19 +2,16 @@ import { MediaAsset } from '../../../shared/content/media-asset';
 import { Space, SpaceKind } from '../models/space.model';
 
 const demoSpaceImage: MediaAsset = {
-  id: 'demo-space-interior',
-  src: '/media/home/hero-poster-demo.webp',
-  width: 1672,
-  height: 941,
-  sources: [
-    { src: '/media/home/hero-poster-demo.avif', type: 'image/avif', width: 1672 },
-    { src: '/media/home/hero-poster-demo.webp', type: 'image/webp', width: 1672 },
-  ],
+  id: 'demo-space-kitchen',
+  src: '/media/spaces/kitchen.jpg',
+  width: 1600,
+  height: 2000,
+  sources: [{ src: '/media/spaces/kitchen.jpg', type: 'image/jpeg', width: 1600 }],
   focalPoint: { x: 0.5, y: 0.5 },
   decorative: false,
   alt: {
-    en: 'Mediterranean interior opening towards the sea.',
-    es: 'Interior mediterráneo abierto hacia el mar.',
+    en: 'Contemporary kitchen with a marble island and natural light.',
+    es: 'Cocina contemporánea con isla de mármol y luz natural.',
   },
 };
 
