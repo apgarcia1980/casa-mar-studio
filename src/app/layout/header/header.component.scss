@@ -34,23 +34,22 @@
 }
 
 .wordmark {
-  display: inline-flex;
-  inline-size: fit-content;
-  flex-direction: column;
-  color: var(--color-text);
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  line-height: 0.9;
+  display: block;
+  inline-size: 3.6rem;
   text-decoration: none;
 }
 
-.wordmark small {
-  margin-block-start: var(--space-2);
-  font-family: var(--font-body);
-  font-size: 0.5rem;
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
+.wordmark img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  filter: brightness(0) saturate(100%);
+}
+
+.site-header--overlay .wordmark img,
+:host-context([data-theme='dark']) .wordmark img,
+:host-context([data-theme='high-contrast']) .wordmark img {
+  filter: none;
 }
 
 .desktop-navigation,
@@ -113,8 +112,14 @@
 }
 
 .mobile-wordmark {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
+  inline-size: 3.6rem;
+  block-size: auto;
+  filter: brightness(0) saturate(100%);
+}
+
+:host-context([data-theme='dark']) .mobile-wordmark,
+:host-context([data-theme='high-contrast']) .mobile-wordmark {
+  filter: none;
 }
 
 .mobile-navigation {
@@ -202,5 +207,10 @@
     color: CanvasText;
     background: Canvas;
     border-block-end-color: CanvasText;
+  }
+
+  .wordmark,
+  .mobile-wordmark {
+    forced-color-adjust: none;
   }
 }

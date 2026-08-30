@@ -75,6 +75,21 @@ export class CinematicHeroComponent {
     }
   }
 
+  protected scrollToIntro(event: MouseEvent): void {
+    event.preventDefault();
+    const link = event.currentTarget as HTMLAnchorElement;
+    const document = link.ownerDocument;
+    const target = document.getElementById('home-intro');
+    if (!target) return;
+    const view = document.defaultView;
+    view?.history.pushState(
+      null,
+      '',
+      `${view.location.pathname}${view.location.search}#home-intro`,
+    );
+    target.scrollIntoView({ block: 'start' });
+  }
+
   protected onVideoMetadata(): void {
     const video = this.video()?.nativeElement;
     if (!video || !Number.isFinite(video.duration) || video.duration <= 0) return;

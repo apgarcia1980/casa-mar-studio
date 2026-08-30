@@ -4,6 +4,13 @@
   <p class="intro-index type-label">{{ i18n.t('home.intro.eyebrow') }}</p>
   <div class="intro-copy">
     <h2 id="home-intro-title">{{ i18n.t('home.intro.title') }}</h2>
-    <p>{{ i18n.t('home.intro.body') }}</p>
   </div>
+</section>
+
+<section class="home-spaces container-page" aria-labelledby="home-spaces-title">
+  <h2 id="home-spaces-title" class="spaces-title type-label">
+    {{ i18n.t('home.spaces.title') }}
+  </h2>
+
+  <app-spaces-story [spaces]="spaces" [locale]="locale" />
 </section>

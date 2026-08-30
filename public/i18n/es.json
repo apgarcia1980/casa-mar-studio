@@ -60,7 +60,6 @@
   },
   "home": {
     "hero": {
-      "demoLabel": "Estudio visual · Poster demo temporal",
       "explore": "Explorar",
       "kicker": "Arquitectura · Interiorismo",
       "pause": "Pausar",
@@ -73,14 +72,17 @@
       "title": "Interiores definidos por la luz, la materia y el lugar."
     },
     "intro": {
-      "body": "Esta introducción concisa es provisional y evolucionará cuando esté disponible el relato aprobado del estudio.",
       "eyebrow": "01 / Estudio",
       "title": "Una relación meditada entre espacio, luz y materia."
+    },
+    "spaces": {
+      "indexLabel": "Índice de espacios",
+      "title": "02 / Espacios"
     }
   },
   "footer": {
     "brandNote": "Una base digital provisional para arquitectura, interiorismo y materialidad.",
-    "brandingPlaceholder": "Wordmark temporal · identidad de marca pendiente"
+    "brandingPlaceholder": "Branding raster oficial · artes vectoriales pendientes"
   },
   "language": {
     "label": "Elegir idioma",

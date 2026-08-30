@@ -5,8 +5,13 @@
       [routerLink]="path(RouteId.Home)"
       [attr.aria-label]="i18n.t('accessibility.homeLink')"
     >
-      <span>Casa Mar</span>
-      <small>{{ i18n.t('brand.wordmarkQualifier') }}</small>
+      <img
+        src="/branding/casa-mar-wordmark-light.png"
+        alt=""
+        width="1120"
+        height="887"
+        decoding="async"
+      />
     </a>
 
     <nav class="desktop-navigation" [attr.aria-label]="i18n.t('navigation.primary')">
@@ -45,7 +50,13 @@
 >
   <div class="mobile-menu__inner">
     <div class="mobile-menu__topline">
-      <span class="mobile-wordmark">Casa Mar</span>
+      <img
+        class="mobile-wordmark"
+        src="/branding/casa-mar-wordmark-light.png"
+        alt="Casa Mar Studio"
+        width="1120"
+        height="887"
+      />
       <button
         class="close-button"
         type="button"

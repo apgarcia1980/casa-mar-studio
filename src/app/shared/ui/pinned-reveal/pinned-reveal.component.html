@@ -1,0 +1,52 @@
+<section #root class="pinned-reveal" [class.pinned-reveal--enhanced]="enhanced()">
+  <div class="pinned-reveal__layout" data-pinned-reveal-layout>
+    <div class="pinned-reveal__content">
+      @for (item of items(); track item.id; let index = $index) {
+        <article class="pinned-reveal__item" [style.order]="index * 2">
+          <div class="pinned-reveal__copy">
+            @if (item.index) {
+              <p class="pinned-reveal__index type-label">{{ item.index }}</p>
+            }
+            <p
+              class="pinned-reveal__title"
+              role="heading"
+              [attr.aria-level]="headingLevel()"
+            >
+              {{ item.title }}
+            </p>
+            @if (item.description) {
+              <p class="pinned-reveal__description">{{ item.description }}</p>
+            }
+            @if (item.link; as link) {
+              <a class="pinned-reveal__link" [href]="link.href">{{ link.label }}</a>
+            }
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="pinned-reveal__media" data-pinned-reveal-media>
+      @for (item of items(); track item.id; let index = $index) {
+        <picture
+          class="pinned-reveal__image"
+          [style.order]="index * 2 + 1"
+          [style.z-index]="stackOrder(index)"
+        >
+          @for (source of item.image.sources ?? []; track source.src) {
+            <source [srcset]="source.src" [type]="source.type" />
+          }
+          <img
+            [src]="item.image.src"
+            [alt]="item.imageAlt"
+            [attr.width]="item.image.width"
+            [attr.height]="item.image.height"
+            [style.object-position]="objectPosition(item)"
+            loading="eager"
+            decoding="async"
+            data-pinned-reveal-image
+          />
+        </picture>
+      }
+    </div>
+  </div>
+</section>

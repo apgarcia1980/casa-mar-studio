@@ -60,7 +60,6 @@
   },
   "home": {
     "hero": {
-      "demoLabel": "Visual study · Temporary demo poster",
       "explore": "Explore",
       "kicker": "Architecture · Interiors",
       "pause": "Pause",
@@ -73,14 +72,17 @@
       "title": "Interiors shaped by light, material and place."
     },
     "intro": {
-      "body": "This concise introduction is provisional and will evolve when the approved studio narrative is available.",
       "eyebrow": "01 / Studio",
       "title": "A considered relationship between space, light and material."
+    },
+    "spaces": {
+      "indexLabel": "Space index",
+      "title": "02 / Spaces"
     }
   },
   "footer": {
     "brandNote": "A provisional digital foundation for architecture, interiors and materiality.",
-    "brandingPlaceholder": "Temporary wordmark · brand identity pending"
+    "brandingPlaceholder": "Official raster branding · vector artwork pending"
   },
   "language": {
     "label": "Choose language",

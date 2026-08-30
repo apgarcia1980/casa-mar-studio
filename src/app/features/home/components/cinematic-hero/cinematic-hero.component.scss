@@ -106,27 +106,16 @@
 
 .hero-wordmark {
   position: absolute;
-  inset-block-start: 30%;
+  inset-block-start: 32%;
   inset-inline-start: 50%;
-  inline-size: max-content;
-  text-align: center;
+  inline-size: clamp(15rem, 28vw, 26rem);
   transform: translate(-50%, -50%);
 }
 
 .hero-brand {
-  font-family: var(--font-display);
-  font-size: clamp(4.5rem, 9.5vw, 9rem);
-  font-weight: 320;
-  letter-spacing: -0.045em;
-  line-height: 0.8;
-}
-
-.hero-qualifier {
-  margin-block-start: var(--space-5);
-  font-size: var(--type-label);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
 }
 
 .hero-statement {
@@ -146,21 +135,13 @@ h1 {
   line-height: 0.98;
 }
 
-.hero-note {
-  margin-block-start: var(--space-4);
-  color: var(--color-hero-text-muted);
-  font-size: var(--type-caption);
-  letter-spacing: 0.04em;
-}
-
 .scroll-cue {
   display: inline-flex;
+  inline-size: fit-content;
   min-block-size: var(--target-min);
   align-items: center;
-  align-self: end;
   gap: var(--space-3);
-  grid-column: 1 / 4;
-  grid-row: 3;
+  margin-block-start: var(--space-5);
   color: var(--color-hero-text);
   font-size: var(--type-label);
   font-weight: var(--font-weight-semibold);
@@ -249,15 +230,7 @@ h1 {
 
   .hero-wordmark {
     inset-block-start: 27%;
-  }
-
-  .hero-brand {
-    font-size: clamp(4rem, 21vw, 6.25rem);
-  }
-
-  .hero-qualifier {
-    margin-block-start: var(--space-4);
-    font-size: 0.6875rem;
+    inline-size: clamp(12rem, 54vw, 17rem);
   }
 
   .hero-statement {
@@ -269,23 +242,10 @@ h1 {
     font-size: clamp(2rem, 10vw, 3.25rem);
   }
 
-  .scroll-cue {
-    grid-column: 1 / 3;
-  }
-
   .hero-controls {
     grid-column: 1 / -1;
     grid-row: 3;
     justify-content: flex-end;
-  }
-
-  .scroll-cue {
-    position: absolute;
-    inset-block: 52% auto;
-    inset-inline-start: 0;
-    grid-column: auto;
-    grid-row: auto;
-    align-self: auto;
   }
 }
 

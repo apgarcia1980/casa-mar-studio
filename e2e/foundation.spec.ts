@@ -73,13 +73,42 @@ test('cinematic hero exposes semantic content, fallback media and controls', asy
   );
 });
 
-test('intro follows the hero through native scrolling', async ({ page }) => {
-  await page.goto('/en');
-  const intro = page.locator('#home-intro');
-  await intro.scrollIntoViewIfNeeded();
-  await expect(intro).toBeInViewport();
-  await expect(intro.getByRole('heading', { level: 2 })).toBeVisible();
-});
+for (const locale of ['en', 'es'] as const) {
+  test(`Explore reaches Home Intro without reloading on /${locale}`, async ({ page }) => {
+    if (locale === 'es') await page.emulateMedia({ reducedMotion: 'reduce' });
+
+    let documentRequests = 0;
+    page.on('request', (request) => {
+      if (request.resourceType() === 'document') documentRequests += 1;
+    });
+
+    await page.goto(`/${locale}`);
+    documentRequests = 0;
+    await page.evaluate(() => {
+      document.documentElement.dataset['anchorIdentity'] = 'retained';
+    });
+
+    await page.getByRole('link', { name: locale === 'en' ? 'Explore' : 'Explorar' }).click();
+
+    await expect(page).toHaveURL(`/${locale}#home-intro`);
+    const intro = page.locator('#home-intro');
+    await expect(intro).toBeInViewport();
+    await expect(intro.getByRole('heading', { level: 2 })).toBeVisible();
+    await expect(page.locator('html')).toHaveAttribute('data-anchor-identity', 'retained');
+    expect(documentRequests).toBe(0);
+
+    await expect
+      .poll(() =>
+        intro.evaluate((element) => {
+          const headerOffset = Number.parseFloat(
+            getComputedStyle(document.documentElement).getPropertyValue('--header-block-size'),
+          );
+          return Math.abs(element.getBoundingClientRect().top - headerOffset);
+        }),
+      )
+      .toBeLessThanOrEqual(2);
+  });
+}
 
 test('reduced motion starts static and prevents video autoplay', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });

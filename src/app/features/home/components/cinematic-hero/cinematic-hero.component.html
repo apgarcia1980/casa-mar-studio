@@ -63,20 +63,26 @@
 
     <div class="hero-content container-page">
       <div class="hero-wordmark" data-hero-wordmark>
-        <p class="hero-brand">Casa Mar</p>
-        <p class="hero-qualifier">{{ i18n.t('home.hero.qualifier') }}</p>
+        <img
+          class="hero-brand"
+          src="/branding/casa-mar-wordmark-light.png"
+          alt="Casa Mar Studio"
+          width="1120"
+          height="887"
+          decoding="async"
+        />
       </div>
 
       <div class="hero-statement" data-hero-copy>
         <p class="hero-kicker type-label">{{ i18n.t('home.hero.kicker') }}</p>
         <h1 id="home-title">{{ i18n.t('home.hero.title') }}</h1>
-        <p class="hero-note">{{ i18n.t('home.hero.demoLabel') }}</p>
+        <a class="scroll-cue" href="#home-intro" (click)="scrollToIntro($event)">
+          <span>{{ i18n.t('home.hero.explore') }}</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v17m-6-6 6 6 6-6" />
+          </svg>
+        </a>
       </div>
-
-      <a class="scroll-cue" href="#home-intro" data-hero-copy>
-        <span>{{ i18n.t('home.hero.explore') }}</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v17m-6-6 6 6 6-6" /></svg>
-      </a>
 
       <div class="hero-controls" data-hero-controls>
         <button

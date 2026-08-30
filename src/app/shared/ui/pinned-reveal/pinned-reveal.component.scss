@@ -1,0 +1,111 @@
+:host {
+  display: block;
+}
+
+.pinned-reveal__layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.pinned-reveal__content,
+.pinned-reveal__media {
+  display: contents;
+}
+
+.pinned-reveal__item {
+  display: grid;
+  padding-block: var(--space-6);
+}
+
+.pinned-reveal__copy {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.pinned-reveal__index {
+  color: var(--color-accent);
+}
+
+.pinned-reveal__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 9vw, 4.5rem);
+  line-height: 0.95;
+}
+
+.pinned-reveal__description {
+  max-inline-size: 38ch;
+  color: var(--color-text-muted);
+  font-size: var(--type-body-lg);
+}
+
+.pinned-reveal__link {
+  inline-size: fit-content;
+  color: var(--color-text);
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.pinned-reveal__link:hover,
+.pinned-reveal__link:focus-visible {
+  color: var(--color-accent);
+}
+
+.pinned-reveal__image {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+.pinned-reveal__image img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+@media (width >= 64rem) {
+  .pinned-reveal--enhanced .pinned-reveal__layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: clamp(var(--space-12), 7vw, var(--space-24));
+    max-inline-size: 72rem;
+    margin-inline: auto;
+  }
+
+  .pinned-reveal--enhanced .pinned-reveal__content {
+    display: flex;
+    flex: 0 1 23rem;
+    flex-direction: column;
+    min-inline-size: 18rem;
+  }
+
+  .pinned-reveal--enhanced .pinned-reveal__item {
+    min-block-size: 100svh;
+    padding-block: 0;
+    align-items: center;
+  }
+
+  .pinned-reveal--enhanced .pinned-reveal__copy {
+    gap: var(--space-5);
+  }
+
+  .pinned-reveal--enhanced .pinned-reveal__media {
+    position: relative;
+    display: block;
+    flex: 1 1 0;
+    block-size: 100svh;
+    min-inline-size: 0;
+  }
+
+  .pinned-reveal--enhanced .pinned-reveal__image {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline: 0;
+    block-size: min(62svh, 32rem);
+    aspect-ratio: auto;
+    transform: translateY(-50%);
+  }
+}
