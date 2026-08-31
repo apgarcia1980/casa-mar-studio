@@ -69,7 +69,44 @@
       "qualifier": "Estudio",
       "soundOff": "Sonido desactivado",
       "soundOn": "Sonido activado",
-      "title": "Interiores definidos por la luz, la materia y el lugar."
+      "title": "Interiores definidos por la luz, la materia y el lugar.",
+      "scenes": {
+        "studio": {
+          "index": "01",
+          "eyebrow": "Casa Mar / Estudio",
+          "title": "Un hogar definido por la luz",
+          "description": "Un estudio sereno de proporción, materia y lugar.",
+          "imageAlt": "Interior de Casa Mar iluminado por el sol"
+        },
+        "living": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Sala",
+          "title": "Estancias para reunirse",
+          "description": "Texturas naturales y luz medida crean un ritmo sereno.",
+          "imageAlt": "Sala de estar con una cálida materialidad natural"
+        },
+        "kitchen": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Cocina",
+          "title": "Materia en uso",
+          "description": "Un entorno preciso para los rituales cotidianos y el encuentro.",
+          "imageAlt": "Cocina contemporánea con isla de mármol y luz natural"
+        },
+        "bathroom": {
+          "index": "03",
+          "eyebrow": "Casa Mar / Baño",
+          "title": "Restauración serena",
+          "description": "Piedra, agua y luz suave equilibran la estancia.",
+          "imageAlt": "Baño de piedra con bañera exenta y ducha"
+        },
+        "outdoor": {
+          "index": "04",
+          "eyebrow": "Casa Mar / Exterior",
+          "title": "La vida al otro lado del umbral",
+          "description": "Una estancia exterior en sombra y en diálogo con el paisaje.",
+          "imageAlt": "Salón exterior enmarcado por vegetación tropical y paisaje de montaña"
+        }
+      }
     },
     "intro": {
       "eyebrow": "01 / Estudio",

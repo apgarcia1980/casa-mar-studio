@@ -69,7 +69,44 @@
       "qualifier": "Studio",
       "soundOff": "Sound off",
       "soundOn": "Sound on",
-      "title": "Interiors shaped by light, material and place."
+      "title": "Interiors shaped by light, material and place.",
+      "scenes": {
+        "studio": {
+          "index": "01",
+          "eyebrow": "Casa Mar / Studio",
+          "title": "A home shaped by light",
+          "description": "A quiet study of proportion, material and place.",
+          "imageAlt": "Sunlit Casa Mar interior"
+        },
+        "living": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Living",
+          "title": "Rooms for gathering",
+          "description": "Natural textures and measured light create a calm rhythm.",
+          "imageAlt": "Living space with warm natural materiality"
+        },
+        "kitchen": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Kitchen",
+          "title": "Material in use",
+          "description": "A precise setting for everyday rituals and gathering.",
+          "imageAlt": "Contemporary kitchen with a marble island and natural light"
+        },
+        "bathroom": {
+          "index": "03",
+          "eyebrow": "Casa Mar / Bath",
+          "title": "Quiet restoration",
+          "description": "Stone, water and soft light bring the room into balance.",
+          "imageAlt": "Stone bathroom with a freestanding bath and shower"
+        },
+        "outdoor": {
+          "index": "04",
+          "eyebrow": "Casa Mar / Exterior",
+          "title": "Life beyond the threshold",
+          "description": "A shaded outdoor room in dialogue with the landscape.",
+          "imageAlt": "Outdoor lounge framed by tropical planting and mountain landscape"
+        }
+      }
     },
     "intro": {
       "eyebrow": "01 / Studio",

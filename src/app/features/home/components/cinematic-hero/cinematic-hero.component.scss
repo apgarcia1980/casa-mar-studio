@@ -3,8 +3,12 @@
   background: var(--color-background);
 }
 
-.cinematic-hero {
+.cinematic-hero,
+.hero-stage {
   min-block-size: 100svb;
+}
+
+.cinematic-hero {
   overflow: clip;
   color: var(--color-hero-text);
   background: var(--color-background);
@@ -12,17 +16,11 @@
 
 .hero-stage {
   position: relative;
-  min-block-size: 100svb;
   overflow: hidden;
   isolation: isolate;
   background: var(--charcoal-950);
-  transform-origin: center top;
-  will-change: transform;
 }
 
-.hero-poster,
-.hero-poster img,
-.hero-video,
 .hero-overlay,
 .hero-geometry {
   position: absolute;
@@ -31,24 +29,9 @@
   block-size: 100%;
 }
 
-.hero-poster img,
-.hero-video {
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero-video {
-  z-index: 1;
-  opacity: 0;
-  transition: opacity var(--duration-slow) var(--ease-standard);
-}
-
-.hero-video--ready {
-  opacity: 1;
-}
-
 .hero-overlay {
   z-index: 2;
+  pointer-events: none;
   background: var(--color-hero-scrim), var(--color-hero-overlay);
 }
 
@@ -57,7 +40,7 @@
   pointer-events: none;
 }
 
-.hero-geometry path:not(.marker-path),
+.hero-geometry path,
 .hero-geometry rect {
   vector-effect: non-scaling-stroke;
 }
@@ -66,11 +49,6 @@
   fill: none;
   stroke: var(--color-hero-line);
   stroke-width: 0.75;
-}
-
-.marker-path {
-  fill: none;
-  stroke: none;
 }
 
 .marker {
@@ -93,19 +71,9 @@
   display: none;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 4;
-  display: grid;
-  min-block-size: 100svb;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 1fr auto auto;
-  gap: var(--grid-gutter);
-  padding-block: calc(var(--header-block-size) + var(--space-8)) var(--space-8);
-}
-
 .hero-wordmark {
   position: absolute;
+  z-index: 5;
   inset-block-start: 32%;
   inset-inline-start: 50%;
   inline-size: clamp(15rem, 28vw, 26rem);
@@ -118,30 +86,22 @@
   block-size: auto;
 }
 
-.hero-statement {
-  align-self: end;
-  grid-column: 1 / 7;
-  grid-row: 2;
-}
-
-.hero-kicker {
-  margin-block-end: var(--space-4);
-  color: var(--color-hero-accent);
-}
-
-h1 {
-  max-inline-size: 15ch;
-  font-size: clamp(2.25rem, 3.6vw, 4rem);
-  line-height: 0.98;
+.hero-controls {
+  position: absolute;
+  z-index: 6;
+  inset-block-end: var(--space-8);
+  inset-inline-end: var(--page-gutter);
 }
 
 .scroll-cue {
+  position: absolute;
+  z-index: 6;
+  inset-block-end: var(--space-8);
+  inset-inline-start: var(--page-gutter);
   display: inline-flex;
-  inline-size: fit-content;
   min-block-size: var(--target-min);
   align-items: center;
   gap: var(--space-3);
-  margin-block-start: var(--space-5);
   color: var(--color-hero-text);
   font-size: var(--type-label);
   font-weight: var(--font-weight-semibold);
@@ -155,17 +115,6 @@ h1 {
   fill: none;
   stroke: currentcolor;
   stroke-width: 1.4;
-}
-
-.hero-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: flex-end;
-  align-self: end;
-  gap: var(--space-2);
-  grid-column: 8 / -1;
-  grid-row: 3;
 }
 
 .hero-controls button {
@@ -196,22 +145,19 @@ h1 {
 }
 
 @media (hover: hover) {
-  .scroll-cue:hover,
   .hero-controls button:hover {
+    color: var(--color-hero-accent);
+  }
+
+  .scroll-cue:hover {
     color: var(--color-hero-accent);
   }
 }
 
 @media (width < 48rem) {
   .hero-stage,
-  .cinematic-hero,
-  .hero-content {
+  .cinematic-hero {
     min-block-size: max(100svb, 40rem);
-  }
-
-  .hero-poster img,
-  .hero-video {
-    object-position: center;
   }
 
   .geometry-desktop {
@@ -222,56 +168,24 @@ h1 {
     display: block;
   }
 
-  .hero-content {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: 1fr auto auto;
-    padding-block-end: var(--space-5);
-  }
-
   .hero-wordmark {
     inset-block-start: 27%;
     inline-size: clamp(12rem, 54vw, 17rem);
   }
 
-  .hero-statement {
-    grid-column: 1 / -1;
-  }
-
-  h1 {
-    max-inline-size: 13ch;
-    font-size: clamp(2rem, 10vw, 3.25rem);
-  }
-
   .hero-controls {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    justify-content: flex-end;
-  }
-}
-
-@media (width <= 22rem) {
-  .hero-controls {
-    justify-content: flex-start;
+    inset-block-end: var(--space-5);
+    inset-inline-end: var(--page-gutter);
   }
 
-  .hero-controls button {
-    padding-inline: var(--space-3);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-stage {
-    will-change: auto;
-  }
-
-  .marker {
-    transform: translate(75px, 108px);
+  .scroll-cue {
+    inset-block-end: var(--space-5);
+    inset-inline-start: var(--page-gutter);
   }
 }
 
 @media (forced-colors: active) {
-  .hero-poster,
-  .hero-video,
+  app-timed-mask-reveal,
   .hero-overlay {
     display: none;
   }
