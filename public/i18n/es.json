@@ -106,6 +106,43 @@
           "description": "Una estancia exterior en sombra y en diálogo con el paisaje.",
           "imageAlt": "Salón exterior enmarcado por vegetación tropical y paisaje de montaña"
         }
+      },
+      "orbit": {
+        "orange": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Ámbar",
+          "title": "Hora dorada",
+          "description": "Un estudio cálido de madera, piedra y la última luz.",
+          "imageAlt": "Interior dorado de Casa Mar junto al mar"
+        },
+        "blue": {
+          "index": "03",
+          "eyebrow": "Casa Mar / Azul",
+          "title": "Atardecer costero",
+          "description": "Tonos materiales fríos enmarcan el mar al final del día.",
+          "imageAlt": "Interior azul de Casa Mar junto al mar"
+        },
+        "yellow": {
+          "index": "04",
+          "eyebrow": "Casa Mar / Luz",
+          "title": "Salón al sol",
+          "description": "Una estancia serena abierta al horizonte mediterráneo.",
+          "imageAlt": "Interior luminoso de Casa Mar junto al mar"
+        },
+        "red": {
+          "index": "05",
+          "eyebrow": "Casa Mar / Terracota",
+          "title": "Calidez nocturna",
+          "description": "Superficies terrosas que recogen el color de un atardecer suave.",
+          "imageAlt": "Interior terracota de Casa Mar junto al mar"
+        },
+        "closetTeal": {
+          "index": "06",
+          "eyebrow": "Casa Mar / Verde azulado",
+          "title": "Orden íntimo",
+          "description": "Un estudio más frío y gráfico de almacenaje y materia.",
+          "imageAlt": "Vestidor verde azulado"
+        }
       }
     },
     "intro": {

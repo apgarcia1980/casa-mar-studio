@@ -74,9 +74,9 @@
 .hero-wordmark {
   position: absolute;
   z-index: 5;
-  inset-block-start: 32%;
+  inset-block-start: 28%;
   inset-inline-start: 50%;
-  inline-size: clamp(15rem, 28vw, 26rem);
+  inline-size: clamp(12.3rem, 23vw, 21.3rem);
   transform: translate(-50%, -50%);
 }
 
@@ -84,6 +84,7 @@
   display: block;
   inline-size: 100%;
   block-size: auto;
+  opacity: 0.88;
 }
 
 .hero-controls {
@@ -169,8 +170,8 @@
   }
 
   .hero-wordmark {
-    inset-block-start: 27%;
-    inline-size: clamp(12rem, 54vw, 17rem);
+    inset-block-start: 24%;
+    inline-size: clamp(9.8rem, 44vw, 13.9rem);
   }
 
   .hero-controls {
@@ -185,7 +186,7 @@
 }
 
 @media (forced-colors: active) {
-  app-timed-mask-reveal,
+  app-orbital-media-composition,
   .hero-overlay {
     display: none;
   }

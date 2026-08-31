@@ -8,9 +8,9 @@ import {
 import { TranslationService } from '../../../../core/i18n/translation.service';
 import { MediaAsset } from '../../../../shared/content/media-asset';
 import {
-  MaskRevealItem,
-  TimedMaskRevealComponent,
-} from '../../../../shared/ui/timed-mask-reveal/timed-mask-reveal.component';
+  OrbitalMediaCompositionComponent,
+  OrbitalMediaItem,
+} from '../../../../shared/ui/orbital-media-composition/orbital-media-composition.component';
 
 const heroPoster: MediaAsset = {
   id: 'hero-poster-demo',
@@ -28,11 +28,11 @@ const heroPoster: MediaAsset = {
   },
 };
 
-const kitchenScene: MediaAsset = {
-  id: 'hero-kitchen-scene',
-  src: '/media/home/hero-scene-kitchen-demo.png',
-  width: 1672,
-  height: 941,
+const blueScene: MediaAsset = {
+  id: 'hero-orbit-blue',
+  src: '/media/home/orbit/hero-blue.png',
+  width: 1456,
+  height: 1088,
   focalPoint: { x: 0.5, y: 0.5 },
   decorative: false,
   alt: {
@@ -41,11 +41,11 @@ const kitchenScene: MediaAsset = {
   },
 };
 
-const bathroomScene: MediaAsset = {
-  id: 'hero-bathroom-scene',
-  src: '/media/home/hero-scene-bath-demo.png',
-  width: 1672,
-  height: 941,
+const yellowScene: MediaAsset = {
+  id: 'hero-orbit-yellow',
+  src: '/media/home/orbit/hero-yellow.png',
+  width: 1456,
+  height: 1088,
   focalPoint: { x: 0.5, y: 0.5 },
   decorative: false,
   alt: {
@@ -54,11 +54,11 @@ const bathroomScene: MediaAsset = {
   },
 };
 
-const outdoorScene: MediaAsset = {
-  id: 'hero-outdoor-scene',
-  src: '/media/home/hero-scene-terrace-demo.png',
-  width: 1672,
-  height: 941,
+const redScene: MediaAsset = {
+  id: 'hero-orbit-red',
+  src: '/media/home/orbit/hero-red.png',
+  width: 1456,
+  height: 1088,
   focalPoint: { x: 0.5, y: 0.5 },
   decorative: false,
   alt: {
@@ -67,17 +67,37 @@ const outdoorScene: MediaAsset = {
   },
 };
 
+const orangeScene: MediaAsset = {
+  id: 'hero-orbit-orange',
+  src: '/media/home/orbit/hero-orange.png',
+  width: 1456,
+  height: 1088,
+  focalPoint: { x: 0.5, y: 0.5 },
+  decorative: false,
+  alt: { en: 'Light-filled living space', es: 'Salón luminoso' },
+};
+
+const closetTealScene: MediaAsset = {
+  id: 'hero-orbit-closet-teal',
+  src: '/media/home/orbit/hero-closet-teal.png',
+  width: 1440,
+  height: 1080,
+  focalPoint: { x: 0.5, y: 0.5 },
+  decorative: false,
+  alt: { en: 'Teal walk-in closet', es: 'Vestidor verde azulado' },
+};
+
 @Component({
   selector: 'app-cinematic-hero',
   templateUrl: './cinematic-hero.component.html',
   styleUrl: './cinematic-hero.component.scss',
-  imports: [TimedMaskRevealComponent],
+  imports: [OrbitalMediaCompositionComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CinematicHeroComponent {
   protected readonly i18n = inject(TranslationService);
   protected readonly motionPaused = signal(false);
-  protected readonly heroScenes = computed<readonly MaskRevealItem[]>(() => [
+  protected readonly heroScenes = computed<readonly OrbitalMediaItem[]>(() => [
     {
       id: heroPoster.id,
       image: heroPoster,
@@ -88,31 +108,49 @@ export class CinematicHeroComponent {
       description: this.i18n.t('home.hero.scenes.studio.description'),
     },
     {
-      id: kitchenScene.id,
-      image: kitchenScene,
-      imageAlt: this.i18n.t('home.hero.scenes.kitchen.imageAlt'),
-      index: this.i18n.t('home.hero.scenes.kitchen.index'),
-      eyebrow: this.i18n.t('home.hero.scenes.kitchen.eyebrow'),
-      title: this.i18n.t('home.hero.scenes.kitchen.title'),
-      description: this.i18n.t('home.hero.scenes.kitchen.description'),
+      id: orangeScene.id,
+      image: orangeScene,
+      imageAlt: this.i18n.t('home.hero.orbit.orange.imageAlt'),
+      index: this.i18n.t('home.hero.orbit.orange.index'),
+      eyebrow: this.i18n.t('home.hero.orbit.orange.eyebrow'),
+      title: this.i18n.t('home.hero.orbit.orange.title'),
+      description: this.i18n.t('home.hero.orbit.orange.description'),
     },
     {
-      id: bathroomScene.id,
-      image: bathroomScene,
-      imageAlt: this.i18n.t('home.hero.scenes.bathroom.imageAlt'),
-      index: this.i18n.t('home.hero.scenes.bathroom.index'),
-      eyebrow: this.i18n.t('home.hero.scenes.bathroom.eyebrow'),
-      title: this.i18n.t('home.hero.scenes.bathroom.title'),
-      description: this.i18n.t('home.hero.scenes.bathroom.description'),
+      id: blueScene.id,
+      image: blueScene,
+      imageAlt: this.i18n.t('home.hero.orbit.blue.imageAlt'),
+      index: this.i18n.t('home.hero.orbit.blue.index'),
+      eyebrow: this.i18n.t('home.hero.orbit.blue.eyebrow'),
+      title: this.i18n.t('home.hero.orbit.blue.title'),
+      description: this.i18n.t('home.hero.orbit.blue.description'),
     },
     {
-      id: outdoorScene.id,
-      image: outdoorScene,
-      imageAlt: this.i18n.t('home.hero.scenes.outdoor.imageAlt'),
-      index: this.i18n.t('home.hero.scenes.outdoor.index'),
-      eyebrow: this.i18n.t('home.hero.scenes.outdoor.eyebrow'),
-      title: this.i18n.t('home.hero.scenes.outdoor.title'),
-      description: this.i18n.t('home.hero.scenes.outdoor.description'),
+      id: yellowScene.id,
+      image: yellowScene,
+      imageAlt: this.i18n.t('home.hero.orbit.yellow.imageAlt'),
+      index: this.i18n.t('home.hero.orbit.yellow.index'),
+      eyebrow: this.i18n.t('home.hero.orbit.yellow.eyebrow'),
+      title: this.i18n.t('home.hero.orbit.yellow.title'),
+      description: this.i18n.t('home.hero.orbit.yellow.description'),
+    },
+    {
+      id: redScene.id,
+      image: redScene,
+      imageAlt: this.i18n.t('home.hero.orbit.red.imageAlt'),
+      index: this.i18n.t('home.hero.orbit.red.index'),
+      eyebrow: this.i18n.t('home.hero.orbit.red.eyebrow'),
+      title: this.i18n.t('home.hero.orbit.red.title'),
+      description: this.i18n.t('home.hero.orbit.red.description'),
+    },
+    {
+      id: closetTealScene.id,
+      image: closetTealScene,
+      imageAlt: this.i18n.t('home.hero.orbit.closetTeal.imageAlt'),
+      index: this.i18n.t('home.hero.orbit.closetTeal.index'),
+      eyebrow: this.i18n.t('home.hero.orbit.closetTeal.eyebrow'),
+      title: this.i18n.t('home.hero.orbit.closetTeal.title'),
+      description: this.i18n.t('home.hero.orbit.closetTeal.description'),
     },
   ]);
 

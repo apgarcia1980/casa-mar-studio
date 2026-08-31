@@ -106,6 +106,43 @@
           "description": "A shaded outdoor room in dialogue with the landscape.",
           "imageAlt": "Outdoor lounge framed by tropical planting and mountain landscape"
         }
+      },
+      "orbit": {
+        "orange": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Amber",
+          "title": "Golden hour",
+          "description": "A warm study of timber, stone and the last light.",
+          "imageAlt": "Golden Casa Mar interior by the sea"
+        },
+        "blue": {
+          "index": "03",
+          "eyebrow": "Casa Mar / Blue",
+          "title": "Coastal dusk",
+          "description": "Cool material tones frame the sea at day’s end.",
+          "imageAlt": "Blue-toned Casa Mar interior by the sea"
+        },
+        "yellow": {
+          "index": "04",
+          "eyebrow": "Casa Mar / Light",
+          "title": "Sunlit living",
+          "description": "A calm room opened to the Mediterranean horizon.",
+          "imageAlt": "Sunlit Casa Mar interior by the sea"
+        },
+        "red": {
+          "index": "05",
+          "eyebrow": "Casa Mar / Terracotta",
+          "title": "Evening warmth",
+          "description": "Earthy surfaces hold the colour of a soft sunset.",
+          "imageAlt": "Terracotta-toned Casa Mar interior by the sea"
+        },
+        "closetTeal": {
+          "index": "06",
+          "eyebrow": "Casa Mar / Teal",
+          "title": "Private order",
+          "description": "A cooler, more graphic study in storage and material.",
+          "imageAlt": "Teal walk-in closet"
+        }
       }
     },
     "intro": {
