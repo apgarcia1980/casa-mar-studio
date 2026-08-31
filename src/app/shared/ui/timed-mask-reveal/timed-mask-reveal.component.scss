@@ -29,6 +29,30 @@
   display: block;
 }
 
+.timed-mask-reveal__strips {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.timed-mask-reveal__strip {
+  position: absolute;
+  inset-inline: 0;
+  block-size: calc(100% / 8);
+  overflow: hidden;
+}
+
+.timed-mask-reveal__strip img {
+  position: absolute;
+  inset-inline: 0;
+  inline-size: 100%;
+  block-size: 800%;
+  max-inline-size: none;
+  object-fit: cover;
+}
+
 .timed-mask-reveal picture,
 .timed-mask-reveal img {
   display: block;
@@ -82,7 +106,26 @@
   mask: var(--scene-mask);
 }
 
+.timed-mask-reveal--strip-reveal .timed-mask-reveal__scene {
+  mask: none;
+}
+
+.timed-mask-reveal--strip-reveal .timed-mask-reveal__strips {
+  display: block;
+}
+
 @media (width < 48rem) {
+  .timed-mask-reveal--enhanced .timed-mask-reveal__scene {
+    /* Mobile Chromium/WebKit use their compositing mask path for SVG fragment masks. */
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask: var(--scene-mask);
+  }
+
+  .timed-mask-reveal--strip-reveal .timed-mask-reveal__scene {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask: none;
+  }
+
   .timed-mask-reveal__copies {
     inset-block-end: calc(var(--space-5) + var(--target-min) + var(--space-5));
     inset-inline: var(--page-gutter);

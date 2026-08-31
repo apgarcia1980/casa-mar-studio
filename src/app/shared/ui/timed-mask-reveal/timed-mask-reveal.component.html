@@ -1,4 +1,9 @@
-<section #root class="timed-mask-reveal" [class.timed-mask-reveal--enhanced]="enhanced()">
+<section
+  #root
+  class="timed-mask-reveal"
+  [class.timed-mask-reveal--enhanced]="enhanced()"
+  [class.timed-mask-reveal--strip-reveal]="revealMode() === 'strips'"
+>
   <svg class="timed-mask-reveal__definitions" aria-hidden="true" focusable="false">
     <defs>
       @for (item of items(); track item.id; let sceneIndex = $index) {
@@ -46,6 +51,18 @@
           />
         </picture>
       </article>
+    }
+  </div>
+
+  <div class="timed-mask-reveal__strips" aria-hidden="true">
+    @for (stripe of stripes; track $index; let stripeIndex = $index) {
+      <span
+        class="timed-mask-reveal__strip"
+        [style.inset-block-start]="stripeIndex * 12.5 + '%'"
+        data-mask-strip
+      >
+        <img [attr.src]="stripImage()" [style.inset-block-start]="stripeIndex * -100 + '%'" alt="" />
+      </span>
     }
   </div>
 

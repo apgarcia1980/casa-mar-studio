@@ -49,4 +49,48 @@
       }
     </div>
   </div>
+
+  <div class="pinned-reveal__mobile" [style.--mobile-space-count]="items().length" data-pinned-reveal-mobile>
+    <div class="pinned-reveal__mobile-stage">
+      <div class="pinned-reveal__mobile-media">
+        @for (item of items(); track item.id; let index = $index) {
+          <picture class="pinned-reveal__mobile-image" [style.z-index]="stackOrder(index)">
+            @for (source of item.image.sources ?? []; track source.src) {
+              <source [srcset]="source.src" [type]="source.type" />
+            }
+            <img
+              [src]="item.image.src"
+              [alt]="item.imageAlt"
+              [attr.width]="item.image.width"
+              [attr.height]="item.image.height"
+              [style.object-position]="objectPosition(item)"
+              loading="eager"
+              decoding="async"
+              data-pinned-reveal-mobile-image
+            />
+          </picture>
+        }
+      </div>
+
+      <div class="pinned-reveal__mobile-copy-window">
+        @for (item of items(); track item.id) {
+          <article class="pinned-reveal__mobile-copy" data-pinned-reveal-mobile-copy>
+            @if (item.index) {
+              <p class="pinned-reveal__index type-label">{{ item.index }}</p>
+            }
+            <p
+              class="pinned-reveal__title"
+              role="heading"
+              [attr.aria-level]="headingLevel()"
+            >
+              {{ item.title }}
+            </p>
+            @if (item.description) {
+              <p class="pinned-reveal__description">{{ item.description }}</p>
+            }
+          </article>
+        }
+      </div>
+    </div>
+  </div>
 </section>

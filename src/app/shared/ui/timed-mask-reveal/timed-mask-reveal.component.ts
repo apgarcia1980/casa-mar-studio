@@ -45,6 +45,8 @@ export class TimedMaskRevealComponent {
   protected readonly enhanced = signal(false);
   protected readonly activeIndex = signal(0);
   protected readonly stripes = Array.from({ length: 8 });
+  protected readonly revealMode = signal<'svg' | 'strips'>('svg');
+  protected readonly stripImage = signal<string | null>(null);
 
   constructor() {
     afterNextRender(() => void this.initialize());
@@ -93,6 +95,10 @@ export class TimedMaskRevealComponent {
       await Promise.all(sceneImages.map((image) => image.decode().catch(() => undefined)));
       if (this.destroyRef.destroyed) return;
 
+      const isMobile = this.platform.matchesMedia('(width < 48rem)');
+      const useStripReveal = isMobile && this.supportsWebKitTouchMask(root);
+      if (useStripReveal) this.stripImage.set(this.items()[0].image.src);
+      this.revealMode.set(useStripReveal ? 'strips' : 'svg');
       this.enhanced.set(true);
       const context = gsap.context(() => {
         const prepareScene = (currentIndex: number): void => {
@@ -107,32 +113,72 @@ export class TimedMaskRevealComponent {
         prepareScene(0);
 
         const timeline = gsap.timeline({ repeat: -1, paused: this.paused() || !this.autoplay() });
-        scenes.forEach((scene, index) => {
-          const nextIndex = (index + 1) % scenes.length;
-          const transition = gsap.timeline();
+        if (useStripReveal) {
+          const strips = Array.from(root.querySelectorAll<HTMLElement>('[data-mask-strip]'));
+          if (strips.length !== this.stripes.length) return;
 
-          transition
-            .to({}, { duration: this.displayDuration() })
-            .to(sceneStripes[index], {
-              scaleX: 0,
-              duration: this.transitionDuration(),
-              ease: 'power2.inOut',
-              stagger: { each: 0.055, from: 'random' },
-            })
-            .call(() => prepareScene(nextIndex));
+          gsap.set(strips, { autoAlpha: 0, xPercent: 0 });
+          scenes.forEach((_, index) => {
+            const nextIndex = (index + 1) % scenes.length;
+            timeline
+              .to({}, { duration: this.displayDuration() })
+              .call(() => {
+                gsap.set(scenes, { zIndex: 0 });
+                gsap.set(scenes[nextIndex], { zIndex: 1 });
+                gsap.set(strips, { autoAlpha: 1, xPercent: 0, willChange: 'transform' });
+              })
+              .to(strips, {
+                xPercent: 110,
+                duration: this.transitionDuration(),
+                ease: 'power2.inOut',
+                stagger: { each: 0.055, from: 'random' },
+              })
+              .call(() => {
+                gsap.set(strips, { autoAlpha: 0, willChange: 'auto' });
+                this.stripImage.set(this.items()[nextIndex].image.src);
+                prepareScene(nextIndex);
+              });
+          });
+        } else {
+          scenes.forEach((_, index) => {
+            const nextIndex = (index + 1) % scenes.length;
+            timeline
+              .to({}, { duration: this.displayDuration() })
+              .to(sceneStripes[index], {
+                scaleX: 0,
+                duration: this.transitionDuration(),
+                ease: 'power2.inOut',
+                stagger: { each: 0.055, from: 'random' },
+              })
+              .call(() => prepareScene(nextIndex));
+          });
+        }
 
-          timeline.add(transition);
-        });
-
-        this.setPlayback = (paused: boolean): void => {
-          if (paused) timeline.pause();
+        const updatePlayback = (paused: boolean): void => {
+          if (paused || (isMobile && root.ownerDocument.visibilityState === 'hidden')) timeline.pause();
           else timeline.play();
+        };
+        this.setPlayback = updatePlayback;
+
+        const handleVisibilityChange = (): void => updatePlayback(this.paused() || !this.autoplay());
+        if (isMobile) root.ownerDocument.addEventListener('visibilitychange', handleVisibilityChange);
+
+        this.animationCleanup = () => {
+          if (isMobile) root.ownerDocument.removeEventListener('visibilitychange', handleVisibilityChange);
+          context.revert();
         };
       }, root);
 
-      this.animationCleanup = () => context.revert();
     } catch {
       this.enhanced.set(false);
     }
+  }
+
+  private supportsWebKitTouchMask(root: HTMLElement): boolean {
+    const view = root.ownerDocument.defaultView;
+    return (
+      view?.matchMedia('(pointer: coarse)').matches === true &&
+      view.CSS?.supports('-webkit-touch-callout', 'none') === true
+    );
   }
 }

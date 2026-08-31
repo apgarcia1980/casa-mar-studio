@@ -73,10 +73,7 @@ export class PinnedRevealComponent {
   }
 
   private async initializePinnedReveal(): Promise<void> {
-    if (
-      !this.platform.matchesMedia('(min-width: 64rem)') ||
-      this.platform.matchesMedia('(prefers-reduced-motion: reduce)')
-    ) {
+    if (this.platform.matchesMedia('(prefers-reduced-motion: reduce)')) {
       return;
     }
 
@@ -93,7 +90,23 @@ export class PinnedRevealComponent {
       const layout = root.querySelector<HTMLElement>('[data-pinned-reveal-layout]');
       const mediaColumn = root.querySelector<HTMLElement>('[data-pinned-reveal-media]');
       const images = Array.from(root.querySelectorAll<HTMLImageElement>('[data-pinned-reveal-image]'));
-      if (!layout || !mediaColumn || images.length < 2) return;
+      const mobileLayout = root.querySelector<HTMLElement>('[data-pinned-reveal-mobile]');
+      const mobileImages = Array.from(
+        root.querySelectorAll<HTMLImageElement>('[data-pinned-reveal-mobile-image]'),
+      );
+      const mobileCopies = Array.from(
+        root.querySelectorAll<HTMLElement>('[data-pinned-reveal-mobile-copy]'),
+      );
+      if (
+        !layout ||
+        !mediaColumn ||
+        images.length < 2 ||
+        !mobileLayout ||
+        mobileImages.length !== images.length ||
+        mobileCopies.length !== images.length
+      ) {
+        return;
+      }
 
       gsap.registerPlugin(ScrollTrigger);
       this.enhanced.set(true);
@@ -102,8 +115,8 @@ export class PinnedRevealComponent {
         .map((token) => computedStyle.getPropertyValue(token).trim())
         .filter(Boolean);
 
-      const media = gsap.matchMedia();
-      media.add('(min-width: 64rem) and (prefers-reduced-motion: no-preference)', () => {
+      const mediaQueries = gsap.matchMedia();
+      const createDesktopReveal = (): (() => void) => {
         const context = gsap.context(() => {
           gsap.set(images, { clipPath: 'inset(0% 0% 0% 0%)', objectPosition: 'center 50%' });
           if (backgrounds.length) gsap.set(root, { backgroundColor: backgrounds[0] });
@@ -114,8 +127,8 @@ export class PinnedRevealComponent {
               start: 'top top',
               end: 'bottom bottom',
               pin: mediaColumn,
-              scrub: true,
               anticipatePin: 1,
+              scrub: true,
             },
           });
 
@@ -157,9 +170,42 @@ export class PinnedRevealComponent {
         }, root);
 
         return () => context.revert();
-      });
+      };
 
-      this.animationCleanup = () => media.revert();
+      const createMobileReveal = (): (() => void) => {
+        const context = gsap.context(() => {
+          gsap.set(mobileImages, { clipPath: 'inset(0% 0% 0% 0%)' });
+          gsap.set(mobileCopies, { xPercent: 100 });
+          gsap.set(mobileCopies[0], { xPercent: 0 });
+
+          const timeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: mobileLayout,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: true,
+            },
+          });
+
+          mobileImages.slice(0, -1).forEach((image, index) => {
+            timeline
+              .to(mobileCopies[index], { xPercent: -100, duration: 1.5, ease: 'none' })
+              .to(mobileCopies[index + 1], { xPercent: 0, duration: 1.5, ease: 'none' }, '<')
+              .to(image, { clipPath: 'inset(0% 0% 0% 100%)', duration: 1.5, ease: 'none' }, '<');
+          });
+        }, root);
+
+        return () => context.revert();
+      };
+
+      mediaQueries.add('(min-width: 64rem) and (prefers-reduced-motion: no-preference)', () =>
+        createDesktopReveal(),
+      );
+      mediaQueries.add('(max-width: 63.999rem) and (prefers-reduced-motion: no-preference)', () =>
+        createMobileReveal(),
+      );
+
+      this.animationCleanup = () => mediaQueries.revert();
       this.animationInitialized = true;
       requestAnimationFrame(() => ScrollTrigger.refresh());
     } catch {
