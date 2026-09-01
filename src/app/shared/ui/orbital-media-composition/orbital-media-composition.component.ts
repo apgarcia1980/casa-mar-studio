@@ -60,49 +60,64 @@ export class OrbitalMediaCompositionComponent {
       this.platform.saveDataEnabled()
     ) return;
 
-    const root = this.root()?.nativeElement;
-    if (!root || this.destroyRef.destroyed) return;
+    const initialRoot = this.root()?.nativeElement;
+    if (!initialRoot || this.destroyRef.destroyed) return;
 
     try {
       const { gsap } = await import('gsap');
-      const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-orbit-card]'));
-      const copies = Array.from(root.querySelectorAll<HTMLElement>('[data-orbit-copy]'));
-      const images = Array.from(root.querySelectorAll<HTMLImageElement>('[data-orbit-image]'));
-      if (cards.length !== this.items().length || copies.length !== cards.length) return;
+      const images = Array.from(initialRoot.querySelectorAll<HTMLImageElement>('[data-orbit-image]'));
       await Promise.all(images.map((image) => image.decode().catch(() => undefined)));
       if (this.destroyRef.destroyed) return;
 
+      // Hydration can replace image nodes while decode() is pending. Resolve the
+      // current host after preloading so GSAP never animates stale SSR nodes.
+      const root = this.root()?.nativeElement;
+      if (!root) return;
+      const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-orbit-card]'));
+      const copies = Array.from(root.querySelectorAll<HTMLElement>('[data-orbit-copy]'));
+      if (cards.length !== this.items().length || copies.length !== cards.length) return;
+
       this.enhanced.set(true);
       const context = gsap.context(() => {
-        const positions = [
-          [{ x: -32, y: -24 }, { x: 28, y: -31 }, { x: 33, y: 20 }, { x: -27, y: 27 }, { x: 8, y: 36 }],
-          [{ x: -34, y: 19 }, { x: -20, y: -31 }, { x: 29, y: -22 }, { x: 33, y: 22 }, { x: -6, y: 34 }],
-          [{ x: 25, y: 29 }, { x: -34, y: 16 }, { x: -23, y: -29 }, { x: 30, y: -20 }, { x: 31, y: 26 }],
-          [{ x: 30, y: -22 }, { x: 24, y: 29 }, { x: -33, y: 19 }, { x: -22, y: -28 }, { x: 29, y: -20 }],
-          [{ x: -22, y: -29 }, { x: 30, y: -21 }, { x: 25, y: 29 }, { x: -33, y: 18 }, { x: -20, y: -28 }],
+        const slots = [
+          { x: 3, y: 0, scale: 1, rotation: -2.5, rotationX: 0, rotationY: 0, opacity: 1, zIndex: 5 },
+          { x: -11, y: -76, scale: 0.74, rotation: 6, rotationX: 7, rotationY: -4, opacity: 0.72, zIndex: 4 },
+          { x: 12, y: -156, scale: 0.54, rotation: -9, rotationX: 11, rotationY: 7, opacity: 0, zIndex: 2 },
+          { x: 10, y: 74, scale: 0.76, rotation: -6, rotationX: -8, rotationY: 5, opacity: 0.7, zIndex: 4 },
+          { x: -8, y: 154, scale: 0.55, rotation: 9, rotationX: -12, rotationY: -7, opacity: 0, zIndex: 2 },
         ];
-        const applyState = (active: number) => {
+        const stateFor = (cardIndex: number, active: number) => {
+          const distance = (active - cardIndex + cards.length) % cards.length;
+          if (distance === 0) return slots[0];
+          if (distance === 1) return slots[1];
+          if (distance === 2) return slots[2];
+          if (distance === cards.length - 1) return slots[3];
+          return slots[4];
+        };
+        const applyState = (active: number, duration: number) => {
           this.activeIndex.set(active);
           cards.forEach((card, index) => {
-            const point = positions[active % positions.length][index % 5];
+            const point = stateFor(index, active);
             gsap.to(card, {
-              xPercent: point.x,
-              yPercent: point.y,
-              scale: index === active ? 1 : 0.62 + ((index + active) % 3) * 0.08,
-              rotation: index === active ? 0 : (index - active) * 1.5,
-              opacity: index === active ? 1 : 0.68,
-              zIndex: index === active ? 2 : 1,
-              duration: 2,
-              ease: 'power2.inOut',
+              xPercent: -50 + point.x,
+              yPercent: -50 + point.y,
+              scale: point.scale,
+              rotation: point.rotation,
+              rotationX: point.rotationX,
+              rotationY: point.rotationY,
+              opacity: point.opacity,
+              zIndex: point.zIndex,
+              duration,
+              ease: 'power3.inOut',
               overwrite: 'auto',
             });
           });
         };
-        applyState(0);
+        applyState(0, 0);
         const timeline = gsap.timeline({ repeat: -1, paused: this.paused() });
         this.items().forEach((_, index) => {
-          const next = (index + 1) % this.items().length;
-          timeline.to({}, { duration: this.displayDuration() }).call(() => applyState(next));
+          const next = (this.items().length - index - 1 + this.items().length) % this.items().length;
+          timeline.to({}, { duration: this.displayDuration() }).call(() => applyState(next, 1.9));
         });
         this.setPlayback = (paused: boolean) => paused ? timeline.pause() : timeline.play();
       }, root);
