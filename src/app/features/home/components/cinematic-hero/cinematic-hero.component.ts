@@ -54,19 +54,6 @@ const yellowScene: MediaAsset = {
   },
 };
 
-const redScene: MediaAsset = {
-  id: 'hero-orbit-red',
-  src: '/media/home/orbit/hero-red.png',
-  width: 1456,
-  height: 1088,
-  focalPoint: { x: 0.5, y: 0.5 },
-  decorative: false,
-  alt: {
-    en: 'Outdoor lounge framed by tropical planting and mountain landscape',
-    es: 'Salón exterior enmarcado por vegetación tropical y paisaje de montaña',
-  },
-};
-
 const orangeScene: MediaAsset = {
   id: 'hero-orbit-orange',
   src: '/media/home/orbit/hero-orange.png',
@@ -75,16 +62,6 @@ const orangeScene: MediaAsset = {
   focalPoint: { x: 0.5, y: 0.5 },
   decorative: false,
   alt: { en: 'Light-filled living space', es: 'Salón luminoso' },
-};
-
-const closetTealScene: MediaAsset = {
-  id: 'hero-orbit-closet-teal',
-  src: '/media/home/orbit/hero-closet-teal.png',
-  width: 1440,
-  height: 1080,
-  focalPoint: { x: 0.5, y: 0.5 },
-  decorative: false,
-  alt: { en: 'Teal walk-in closet', es: 'Vestidor verde azulado' },
 };
 
 @Component({
@@ -133,24 +110,6 @@ export class CinematicHeroComponent {
       eyebrow: this.i18n.t('home.hero.orbit.yellow.eyebrow'),
       title: this.i18n.t('home.hero.orbit.yellow.title'),
       description: this.i18n.t('home.hero.orbit.yellow.description'),
-    },
-    {
-      id: redScene.id,
-      image: redScene,
-      imageAlt: this.i18n.t('home.hero.orbit.red.imageAlt'),
-      index: this.i18n.t('home.hero.orbit.red.index'),
-      eyebrow: this.i18n.t('home.hero.orbit.red.eyebrow'),
-      title: this.i18n.t('home.hero.orbit.red.title'),
-      description: this.i18n.t('home.hero.orbit.red.description'),
-    },
-    {
-      id: closetTealScene.id,
-      image: closetTealScene,
-      imageAlt: this.i18n.t('home.hero.orbit.closetTeal.imageAlt'),
-      index: this.i18n.t('home.hero.orbit.closetTeal.index'),
-      eyebrow: this.i18n.t('home.hero.orbit.closetTeal.eyebrow'),
-      title: this.i18n.t('home.hero.orbit.closetTeal.title'),
-      description: this.i18n.t('home.hero.orbit.closetTeal.description'),
     },
   ]);
 
