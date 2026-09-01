@@ -38,25 +38,40 @@
 .orbital-media__cards {
   position: absolute;
   inset: 0;
-  perspective: 75rem;
+  perspective: 56.25rem;
   perspective-origin: 50% 50%;
   transform-style: preserve-3d;
 }
 
+.orbital-media__cards::before {
+  position: absolute;
+  z-index: 1;
+  inset: 8% 12%;
+  display: block;
+  content: '';
+  pointer-events: none;
+  background: url('/branding/casa-mar-wordmark-light.png') center / contain no-repeat;
+  opacity: 0.15;
+}
+
 .orbital-media__card {
   position: absolute;
-  inset: 64% auto auto 50%;
-  inline-size: clamp(18rem, 38vw, 42rem);
-  aspect-ratio: 4 / 3;
+  inset: 69% auto auto 50%;
+  inline-size: clamp(18rem, 36vw, 38rem);
+  aspect-ratio: 14 / 9;
   display: block;
   overflow: hidden;
   border-radius: 0.625rem;
-  transform: translate3d(-50%, -50%, 0) scale(0.62);
+  transform: none;
   transform-origin: center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   box-shadow: 0 1.5rem 3.5rem rgb(0 0 0 / 25%);
   will-change: transform, opacity;
+}
+
+.orbital-media:not(.orbital-media--enhanced) .orbital-media__card {
+  transform: translate3d(-50%, -50%, 0) scale(0.78);
 }
 
 .orbital-media__card img {
@@ -120,9 +135,14 @@
     opacity: 0.58;
   }
 
+  .orbital-media__cards::before {
+    inset: 12% 8%;
+    opacity: 0.12;
+  }
+
   .orbital-media__card {
-    inset: 66% auto auto 50%;
-    inline-size: min(84vw, 25rem);
+    inset: 70% auto auto 50%;
+    inline-size: min(74vw, 22rem);
   }
 
   .orbital-media__copy {

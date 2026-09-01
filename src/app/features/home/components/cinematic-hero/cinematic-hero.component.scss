@@ -71,22 +71,6 @@
   display: none;
 }
 
-.hero-wordmark {
-  position: absolute;
-  z-index: 5;
-  inset-block-start: 28%;
-  inset-inline-start: 50%;
-  inline-size: clamp(12.3rem, 23vw, 21.3rem);
-  transform: translate(-50%, -50%);
-}
-
-.hero-brand {
-  display: block;
-  inline-size: 100%;
-  block-size: auto;
-  opacity: 0.88;
-}
-
 .hero-controls {
   position: absolute;
   z-index: 6;
@@ -167,11 +151,6 @@
 
   .geometry-mobile {
     display: block;
-  }
-
-  .hero-wordmark {
-    inset-block-start: 24%;
-    inline-size: clamp(9.8rem, 44vw, 13.9rem);
   }
 
   .hero-controls {
