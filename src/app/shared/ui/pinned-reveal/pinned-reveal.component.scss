@@ -3,7 +3,47 @@
 }
 
 .pinned-reveal {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
   background-color: var(--color-background);
+}
+
+.pinned-reveal__background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--color-background);
+}
+
+.pinned-reveal__background::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: color-mix(in srgb, var(--color-background) 72%, transparent);
+}
+
+.pinned-reveal__background-image {
+  position: absolute;
+  inset: -4%;
+  inline-size: 108%;
+  block-size: 108%;
+  object-fit: cover;
+  filter: blur(0.35rem) saturate(0.82);
+  opacity: 0;
+  transform: scale(1.04);
+}
+
+.pinned-reveal__background-image:first-child {
+  opacity: 1;
+}
+
+.pinned-reveal__layout,
+.pinned-reveal__mobile {
+  position: relative;
+  z-index: 1;
 }
 
 .pinned-reveal__layout {

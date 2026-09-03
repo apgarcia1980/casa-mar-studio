@@ -90,6 +90,9 @@ export class PinnedRevealComponent {
       const layout = root.querySelector<HTMLElement>('[data-pinned-reveal-layout]');
       const mediaColumn = root.querySelector<HTMLElement>('[data-pinned-reveal-media]');
       const images = Array.from(root.querySelectorAll<HTMLImageElement>('[data-pinned-reveal-image]'));
+      const backgroundImages = Array.from(
+        root.querySelectorAll<HTMLImageElement>('[data-pinned-reveal-background-image]'),
+      );
       const mobileLayout = root.querySelector<HTMLElement>('[data-pinned-reveal-mobile]');
       const mobileImages = Array.from(
         root.querySelectorAll<HTMLImageElement>('[data-pinned-reveal-mobile-image]'),
@@ -101,6 +104,7 @@ export class PinnedRevealComponent {
         !layout ||
         !mediaColumn ||
         images.length < 2 ||
+        backgroundImages.length !== images.length ||
         !mobileLayout ||
         mobileImages.length !== images.length ||
         mobileCopies.length !== images.length
@@ -119,6 +123,8 @@ export class PinnedRevealComponent {
       const createDesktopReveal = (): (() => void) => {
         const context = gsap.context(() => {
           gsap.set(images, { clipPath: 'inset(0% 0% 0% 0%)', objectPosition: 'center 50%' });
+          gsap.set(backgroundImages, { opacity: 0 });
+          gsap.set(backgroundImages[0], { opacity: 1 });
           if (backgrounds.length) gsap.set(root, { backgroundColor: backgrounds[0] });
 
           const timeline = gsap.timeline({
@@ -154,7 +160,9 @@ export class PinnedRevealComponent {
                   ease: 'none',
                 },
                 0,
-              );
+              )
+              .to(backgroundImages[index], { opacity: 0, duration: 1.5, ease: 'none' }, 0)
+              .to(backgroundImages[index + 1], { opacity: 1, duration: 1.5, ease: 'none' }, 0);
 
             const nextBackground = backgrounds[Math.min(index + 1, backgrounds.length - 1)];
             if (nextBackground) {
@@ -175,6 +183,8 @@ export class PinnedRevealComponent {
       const createMobileReveal = (): (() => void) => {
         const context = gsap.context(() => {
           gsap.set(mobileImages, { clipPath: 'inset(0% 0% 0% 0%)' });
+          gsap.set(backgroundImages, { opacity: 0 });
+          gsap.set(backgroundImages[0], { opacity: 1 });
           gsap.set(mobileCopies, { xPercent: 100 });
           gsap.set(mobileCopies[0], { xPercent: 0 });
 
@@ -191,7 +201,9 @@ export class PinnedRevealComponent {
             timeline
               .to(mobileCopies[index], { xPercent: -100, duration: 1.5, ease: 'none' })
               .to(mobileCopies[index + 1], { xPercent: 0, duration: 1.5, ease: 'none' }, '<')
-              .to(image, { clipPath: 'inset(0% 0% 0% 100%)', duration: 1.5, ease: 'none' }, '<');
+              .to(image, { clipPath: 'inset(0% 0% 0% 100%)', duration: 1.5, ease: 'none' }, '<')
+              .to(backgroundImages[index], { opacity: 0, duration: 1.5, ease: 'none' }, '<')
+              .to(backgroundImages[index + 1], { opacity: 1, duration: 1.5, ease: 'none' }, '<');
           });
         }, root);
 

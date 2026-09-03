@@ -1,4 +1,17 @@
 <section #root class="pinned-reveal" [class.pinned-reveal--enhanced]="enhanced()">
+  <div class="pinned-reveal__background" aria-hidden="true">
+    @for (item of items(); track item.id) {
+      <img
+        class="pinned-reveal__background-image"
+        [src]="item.image.src"
+        alt=""
+        [style.object-position]="objectPosition(item)"
+        decoding="async"
+        data-pinned-reveal-background-image
+      />
+    }
+  </div>
+
   <div class="pinned-reveal__layout" data-pinned-reveal-layout>
     <div class="pinned-reveal__content">
       @for (item of items(); track item.id; let index = $index) {
