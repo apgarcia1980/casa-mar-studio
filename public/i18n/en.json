@@ -154,6 +154,55 @@
       "title": "02 / Spaces"
     }
   },
+  "comingSoon": {
+    "exploreHome": "Explore Home",
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Coming into view.",
+      "description": "We are preparing a curated collection of residential interiors.",
+      "secondaryText": "Thank you for your patience."
+    },
+    "materials": {
+      "title": "Materials",
+      "subtitle": "Curated. Timeless. Coming soon.",
+      "description": "A dedicated library of materials, finishes and textures is on the way.",
+      "secondaryText": "Thank you for your patience."
+    }
+  },
+  "studioPage": {
+    "eyebrow": "01 / Studio",
+    "title": "A considered relationship between space, light and material.",
+    "bodyPrimary": "At Casa Mar Studio, we design enduring interiors: effortless, timeless and deeply connected to place.",
+    "bodySecondary": "Our work is guided by clarity, proportion and a respect for the essential.",
+    "cta": "Explore Home",
+    "imageAlt": "Casa Mar interior framed by warm arches and a view towards the sea.",
+    "principles": {
+      "light": {
+        "title": "Light",
+        "description": "We shape natural light to create atmosphere and wellbeing."
+      },
+      "materiality": {
+        "title": "Materiality",
+        "description": "We use honest, tactile materials that age beautifully and tell a story."
+      },
+      "proportion": {
+        "title": "Proportion",
+        "description": "We compose balanced spaces with intent and restraint."
+      },
+      "calmLiving": {
+        "title": "Calm Living",
+        "description": "We design for slower moments and a life well lived."
+      }
+    }
+  },
+  "spacesPage": {
+    "eyebrow": "02 / Spaces",
+    "title": "Spaces designed for daily rituals.",
+    "subtitle": "Different moments, one cohesive feeling.",
+    "bodyPrimary": "We shape each space with intention—balancing light, material, and flow to elevate the everyday.",
+    "bodySecondary": "From quiet mornings to shared evenings, every detail is considered.",
+    "cta": "Explore Home"
+  },
   "footer": {
     "brandNote": "A provisional digital foundation for architecture, interiors and materiality.",
     "brandingPlaceholder": "Official raster branding · vector artwork pending"
@@ -180,6 +229,22 @@
     "home": {
       "description": "A provisional editorial introduction to Casa Mar Studio, architecture and interiors.",
       "title": "Casa Mar Studio — Architecture and interiors"
+    },
+    "projects": {
+      "description": "A curated collection of Casa Mar residential interiors is coming into view.",
+      "title": "Projects — Casa Mar Studio"
+    },
+    "materials": {
+      "description": "A considered library of Casa Mar materials, finishes and textures is coming soon.",
+      "title": "Materials — Casa Mar Studio"
+    },
+    "spaces": {
+      "description": "An editorial collection of Casa Mar interiors designed for daily rituals.",
+      "title": "Spaces — Casa Mar Studio"
+    },
+    "studio": {
+      "description": "The Casa Mar Studio approach to light, material, proportion and calm living.",
+      "title": "Studio — Casa Mar Studio"
     },
     "designSystem": {
       "description": "Development preview of the Casa Mar Studio design system.",

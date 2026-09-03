@@ -1,0 +1,51 @@
+<section class="coming-soon" [class.coming-soon--dark]="variant() === 'dark'">
+  <div class="coming-soon__frame">
+    @if (image(); as media) {
+      <figure class="coming-soon__media">
+        <img
+          [src]="media.src"
+          [alt]="media.decorative ? '' : imageAlt()"
+          [attr.width]="media.width"
+          [attr.height]="media.height"
+          [style.object-position]="objectPosition()"
+          [attr.aria-hidden]="media.decorative || null"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </figure>
+    }
+
+    <div class="coming-soon__wash" aria-hidden="true"></div>
+    <div class="coming-soon__lines" aria-hidden="true"></div>
+
+    <div class="coming-soon__content">
+      @if (section()) {
+        <p class="coming-soon__section type-label">{{ section() }}</p>
+      }
+      @if (eyebrow()) {
+        <p class="coming-soon__eyebrow type-label">{{ eyebrow() }}</p>
+      }
+
+      <h1 class="coming-soon__title">{{ title() }}</h1>
+
+      @if (subtitle()) {
+        <p class="coming-soon__subtitle">{{ subtitle() }}</p>
+      }
+      @if (description()) {
+        <p class="coming-soon__description">{{ description() }}</p>
+      }
+      @if (secondaryText()) {
+        <p class="coming-soon__secondary">{{ secondaryText() }}</p>
+      }
+      @if (ctaRoute() && ctaLabel()) {
+        <app-button-link
+          class="coming-soon__cta"
+          [path]="ctaRoute()!"
+          variant="secondary"
+        >
+          {{ ctaLabel() }} <span aria-hidden="true">→</span>
+        </app-button-link>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<section class="spaces-page">
+  <div class="spaces-page__frame">
+    <div class="spaces-page__lines" aria-hidden="true"></div>
+    <div class="spaces-page__copy">
+      <p class="spaces-page__eyebrow type-label">{{ i18n.t('spacesPage.eyebrow') }}</p>
+      <h1>{{ i18n.t('spacesPage.title') }}</h1>
+      <p class="spaces-page__subtitle">{{ i18n.t('spacesPage.subtitle') }}</p>
+      <div class="spaces-page__body">
+        <p>{{ i18n.t('spacesPage.bodyPrimary') }}</p>
+        <p>{{ i18n.t('spacesPage.bodySecondary') }}</p>
+      </div>
+      <app-button-link [path]="homePath" variant="secondary">
+        {{ i18n.t('spacesPage.cta') }} <span aria-hidden="true">→</span>
+      </app-button-link>
+    </div>
+
+    <div class="spaces-page__grid">
+      @for (card of cards(); track card.id) {
+        <article class="spaces-page__card">
+          <img [src]="card.image" [alt]="card.imageAlt" width="1536" height="1024" loading="lazy" />
+          <div class="spaces-page__card-caption">
+            <span>{{ card.index }} / {{ card.title }}</span>
+            <span>{{ card.note }}</span>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
