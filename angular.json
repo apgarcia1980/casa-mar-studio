@@ -3,7 +3,9 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "schematicCollections": ["angular-eslint"],
+    "schematicCollections": [
+      "angular-eslint"
+    ],
     "analytics": "7acf122f-a0a0-4b8e-a6c1-84dddb18cb80"
   },
   "newProjectRoot": "projects",
@@ -31,11 +33,16 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": ["localhost", "127.0.0.1"]
+              "allowedHosts": [
+                "localhost",
+                "127.0.0.1"
+              ]
             },
             "ssr": {
               "entry": "src/server.ts"
@@ -83,6 +90,16 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": [
+              "localhost",
+              "127.0.0.1",
+              "192.168.178.67",
+              "investigated-poster-pirates-cloud.trycloudflare.com",
+              "keeping-replaced-purchase-fifteen.trycloudflare.com",
+              "*.trycloudflare.com"
+            ]
+          },
           "configurations": {
             "production": {
               "buildTarget": "casa-mar-estudio:build:production"
@@ -99,7 +116,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }

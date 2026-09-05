@@ -1,0 +1,90 @@
+<section
+  #root
+  class="timed-mask-reveal"
+  [class.timed-mask-reveal--enhanced]="enhanced()"
+  [class.timed-mask-reveal--strip-reveal]="revealMode() === 'strips'"
+>
+  <svg class="timed-mask-reveal__definitions" aria-hidden="true" focusable="false">
+    <defs>
+      @for (item of items(); track item.id; let sceneIndex = $index) {
+        <mask
+          [attr.id]="maskId(sceneIndex)"
+          maskUnits="objectBoundingBox"
+          maskContentUnits="objectBoundingBox"
+        >
+          @for (stripe of stripes; track $index; let stripeIndex = $index) {
+            <rect
+              x="0"
+              [attr.y]="stripeIndex / stripes.length"
+              width="1"
+              [attr.height]="1 / stripes.length"
+              fill="white"
+              [attr.data-mask-stripe]="sceneIndex"
+            />
+          }
+        </mask>
+      }
+    </defs>
+  </svg>
+
+  <div class="timed-mask-reveal__media">
+    @for (item of items(); track item.id; let index = $index) {
+      <article
+        class="timed-mask-reveal__scene"
+        [style.--scene-mask]="'url(#' + maskId(index) + ')'"
+        data-mask-scene
+      >
+        <picture>
+          @for (source of item.image.sources ?? []; track source.src) {
+            <source [srcset]="source.src" [type]="source.type" />
+          }
+          <img
+            [src]="item.image.src"
+            [alt]="item.imageAlt"
+            [attr.width]="item.image.width"
+            [attr.height]="item.image.height"
+            [style.object-position]="objectPosition(item)"
+            [attr.fetchpriority]="index === 0 ? 'high' : null"
+            data-mask-image
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+      </article>
+    }
+  </div>
+
+  <div class="timed-mask-reveal__strips" aria-hidden="true">
+    @for (stripe of stripes; track $index; let stripeIndex = $index) {
+      <span
+        class="timed-mask-reveal__strip"
+        [style.inset-block-start]="stripeIndex * 12.5 + '%'"
+        data-mask-strip
+      >
+        <img [attr.src]="stripImage()" [style.inset-block-start]="stripeIndex * -100 + '%'" alt="" />
+      </span>
+    }
+  </div>
+
+  <div class="timed-mask-reveal__copies" aria-live="polite">
+    @for (item of items(); track item.id; let index = $index) {
+      <div
+        class="timed-mask-reveal__copy"
+        [class.timed-mask-reveal__copy--active]="activeIndex() === index"
+      >
+        @if (item.index || item.eyebrow) {
+          <p class="timed-mask-reveal__eyebrow type-label">
+            @if (item.index) { <span>{{ item.index }}</span> }
+            @if (item.eyebrow) { <span>{{ item.eyebrow }}</span> }
+          </p>
+        }
+        @if (item.title) {
+          <p class="timed-mask-reveal__title">{{ item.title }}</p>
+        }
+        @if (item.description) {
+          <p class="timed-mask-reveal__description">{{ item.description }}</p>
+        }
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,31 @@
+<section #root class="orbital-media" [class.orbital-media--enhanced]="enhanced()">
+  <div class="orbital-media__background" aria-hidden="true">
+    @for (item of items(); track item.id; let index = $index) {
+      <img
+        [src]="item.image.src"
+        [class.orbital-media__background-image--active]="activeIndex() === index"
+        [style.object-position]="objectPosition(item)"
+        alt=""
+      />
+    }
+  </div>
+  <div class="orbital-media__cards" aria-hidden="true">
+    @for (item of items(); track item.id) {
+      <picture class="orbital-media__card" data-orbit-card>
+        @for (source of item.image.sources ?? []; track source.src) {
+          <source [srcset]="source.src" [type]="source.type" />
+        }
+        <img [src]="item.image.src" [alt]="" [style.object-position]="objectPosition(item)" loading="eager" decoding="async" data-orbit-image />
+      </picture>
+    }
+  </div>
+  <div class="orbital-media__copy" aria-live="polite">
+    @for (item of items(); track item.id; let index = $index) {
+      <div class="orbital-media__copy-item" [class.orbital-media__copy-item--active]="activeIndex() === index" data-orbit-copy>
+        @if (item.index || item.eyebrow) { <p class="type-label">{{ item.index }} {{ item.eyebrow }}</p> }
+        @if (item.title) { <p class="orbital-media__title">{{ item.title }}</p> }
+        @if (item.description) { <p class="orbital-media__description">{{ item.description }}</p> }
+      </div>
+    }
+  </div>
+</section>

@@ -1,39 +1,9 @@
-<section #hero class="cinematic-hero" aria-labelledby="home-title" data-hero-root>
-  <div class="hero-stage" data-hero-stage>
-    <picture class="hero-poster" aria-hidden="true">
-      <source media="(max-width: 47.99rem)" [srcset]="media.poster.mobileAvif" type="image/avif" />
-      <source media="(max-width: 47.99rem)" [srcset]="media.poster.mobileWebp" type="image/webp" />
-      <source [srcset]="media.poster.desktopAvif" type="image/avif" />
-      <img
-        [src]="media.poster.desktopWebp"
-        alt=""
-        width="1672"
-        height="941"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </picture>
-
-    <video
-      #video
-      class="hero-video"
-      [class.hero-video--ready]="videoReady()"
-      [attr.autoplay]="autoplayAllowed() ? '' : null"
-      [attr.preload]="preload()"
-      [poster]="media.poster.desktopWebp"
-      muted
-      loop
-      playsinline
-      aria-hidden="true"
-      tabindex="-1"
-      (loadedmetadata)="onVideoMetadata()"
-      (playing)="onVideoPlaying()"
-      (error)="onVideoError()"
-    >
-      @for (source of media.videoSources; track source.src) {
-        <source [src]="source.src" [type]="source.type" [media]="source.media" />
-      }
-    </video>
+<section class="cinematic-hero" aria-label="Casa Mar Studio">
+  <div class="hero-stage">
+    <app-orbital-media-composition
+      [items]="heroScenes()"
+      [paused]="motionPaused()"
+    />
 
     <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -54,61 +24,21 @@
         <path data-geometry-line pathLength="1" d="M82 116H770V48" />
         <path data-geometry-line pathLength="1" d="M918 572H510L212 700" />
       </g>
-      <path data-marker-path class="marker-path" d="M75 108H418L532 232 470 438H917" />
-      <g data-marker class="marker" transform="translate(75 108)">
+      <g class="marker" transform="translate(75 108)">
         <rect x="-6" y="-6" width="12" height="12" />
         <path d="M-11 0H11M0-11V11" />
       </g>
     </svg>
 
-    <div class="hero-content container-page">
-      <div class="hero-wordmark" data-hero-wordmark>
-        <img
-          class="hero-brand"
-          src="/branding/casa-mar-wordmark-light.png"
-          alt="Casa Mar Studio"
-          width="1120"
-          height="887"
-          decoding="async"
-        />
-      </div>
-
-      <div class="hero-statement" data-hero-copy>
-        <p class="hero-kicker type-label">{{ i18n.t('home.hero.kicker') }}</p>
-        <h1 id="home-title">{{ i18n.t('home.hero.title') }}</h1>
-        <a class="scroll-cue" href="#home-intro" (click)="scrollToIntro($event)">
-          <span>{{ i18n.t('home.hero.explore') }}</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 3v17m-6-6 6 6 6-6" />
-          </svg>
-        </a>
-      </div>
-
-      <div class="hero-controls" data-hero-controls>
-        <button
-          type="button"
-          [attr.aria-pressed]="soundOn()"
-          [attr.aria-label]="i18n.t(soundOn() ? 'home.hero.soundOn' : 'home.hero.soundOff')"
-          (click)="toggleSound()"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 10v4h4l5 4V6L8 10H4Z" />
-            @if (soundOn()) {
-              <path d="M17 9c1 1 1 5 0 6m3-9c3 3 3 9 0 12" />
-            } @else {
-              <path d="m17 9 5 6m0-6-5 6" />
-            }
-          </svg>
-          <span>{{ i18n.t(soundOn() ? 'home.hero.soundOn' : 'home.hero.soundOff') }}</span>
-        </button>
-        <button
+    <div class="hero-controls">
+      <button
           type="button"
           [attr.aria-pressed]="motionPaused()"
           [attr.aria-label]="
             i18n.t(motionPaused() ? 'home.hero.playMotion' : 'home.hero.pauseMotion')
           "
           (click)="toggleMotion()"
-        >
+      >
           @if (motionPaused()) {
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z" /></svg>
             <span>{{ i18n.t('home.hero.play') }}</span>
@@ -116,8 +46,14 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3v14H7zm7 0h3v14h-3z" /></svg>
             <span>{{ i18n.t('home.hero.pause') }}</span>
           }
-        </button>
-      </div>
+      </button>
     </div>
+
+    <a class="scroll-cue" href="#home-intro" (click)="scrollToIntro($event)">
+      <span>{{ i18n.t('home.hero.explore') }}</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v17m-6-6 6 6 6-6" />
+      </svg>
+    </a>
   </div>
 </section>

@@ -1,0 +1,114 @@
+:host {
+  display: block;
+}
+
+.depth-gallery {
+  position: relative;
+  min-block-size: calc(100svh - var(--header-block-size));
+  overflow: hidden;
+  color: var(--ink-900);
+  touch-action: none;
+}
+
+.depth-gallery__canvas {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.depth-gallery__overlay {
+  position: absolute;
+  z-index: 1;
+  inset-block-end: clamp(2rem, 6vh, 5rem);
+  inset-inline-start: clamp(1.25rem, 7vw, 8rem);
+  max-inline-size: 24rem;
+  pointer-events: none;
+}
+
+.depth-gallery__index,
+.depth-gallery__hint {
+  font-size: var(--type-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.depth-gallery__index {
+  margin: 0 0 var(--space-3);
+}
+
+.depth-gallery__overlay h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.055em;
+  line-height: 0.87;
+}
+
+.depth-gallery__overlay p:last-child {
+  max-inline-size: 29ch;
+  margin: var(--space-4) 0 0;
+  font-size: var(--type-body-lg);
+  line-height: 1.4;
+}
+
+.depth-gallery__pager {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  gap: 0.5rem;
+  inset-block-end: clamp(2rem, 6vh, 5rem);
+  inset-inline-end: clamp(1.25rem, 4vw, 4rem);
+}
+
+.depth-gallery__pager button {
+  inline-size: 1.8rem;
+  block-size: 0.25rem;
+  padding: 0;
+  border: 0;
+  background: rgb(30 30 26 / 30%);
+  cursor: pointer;
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+
+.depth-gallery__pager button.is-active {
+  background: var(--ink-900);
+  transform: scaleX(1.55);
+}
+
+.depth-gallery__hint {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: 1.5rem;
+  inset-inline-end: clamp(1.25rem, 4vw, 4rem);
+  margin: 0;
+}
+
+@media (width < 48rem) {
+  .depth-gallery {
+    min-block-size: calc(100svh - var(--header-block-size));
+  }
+
+  .depth-gallery__overlay {
+    inset-inline: var(--space-5);
+    inset-block-end: 5rem;
+  }
+
+  .depth-gallery__overlay h1 {
+    font-size: clamp(3.5rem, 18vw, 5rem);
+  }
+
+  .depth-gallery__overlay p:last-child {
+    font-size: var(--type-body);
+  }
+
+  .depth-gallery__pager {
+    inset-inline: var(--space-5) auto;
+    inset-block-end: 2rem;
+  }
+
+  .depth-gallery__hint {
+    display: none;
+  }
+}

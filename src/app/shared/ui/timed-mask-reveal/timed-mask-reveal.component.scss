@@ -1,0 +1,134 @@
+:host {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.timed-mask-reveal,
+.timed-mask-reveal__media,
+.timed-mask-reveal__scene,
+.timed-mask-reveal picture,
+.timed-mask-reveal img {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.timed-mask-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.timed-mask-reveal__definitions {
+  position: absolute;
+  inline-size: 0;
+  block-size: 0;
+}
+
+.timed-mask-reveal__scene {
+  position: relative;
+  display: block;
+}
+
+.timed-mask-reveal__strips {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.timed-mask-reveal__strip {
+  position: absolute;
+  inset-inline: 0;
+  block-size: calc(100% / 8);
+  overflow: hidden;
+}
+
+.timed-mask-reveal__strip img {
+  position: absolute;
+  inset-inline: 0;
+  inline-size: 100%;
+  block-size: 800%;
+  max-inline-size: none;
+  object-fit: cover;
+}
+
+.timed-mask-reveal picture,
+.timed-mask-reveal img {
+  display: block;
+}
+
+.timed-mask-reveal img {
+  object-fit: cover;
+}
+
+.timed-mask-reveal__copies {
+  position: absolute;
+  z-index: 4;
+  inset-block-end: var(--space-12);
+  inset-inline-end: var(--page-gutter);
+  inline-size: min(24rem, 28vw);
+}
+
+.timed-mask-reveal__copy {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  display: none;
+  gap: var(--space-3);
+}
+
+.timed-mask-reveal__copy--active {
+  display: grid;
+}
+
+.timed-mask-reveal__eyebrow {
+  display: flex;
+  gap: var(--space-3);
+  color: var(--color-hero-accent);
+}
+
+.timed-mask-reveal__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 3.25rem);
+  line-height: 0.95;
+}
+
+.timed-mask-reveal__description {
+  max-inline-size: 30ch;
+  color: var(--color-hero-text-muted);
+  font-size: var(--type-body-lg);
+}
+
+.timed-mask-reveal--enhanced .timed-mask-reveal__scene {
+  position: absolute;
+  inset: 0;
+  mask: var(--scene-mask);
+}
+
+.timed-mask-reveal--strip-reveal .timed-mask-reveal__scene {
+  mask: none;
+}
+
+.timed-mask-reveal--strip-reveal .timed-mask-reveal__strips {
+  display: block;
+}
+
+@media (width < 48rem) {
+  .timed-mask-reveal--enhanced .timed-mask-reveal__scene {
+    /* Mobile Chromium/WebKit use their compositing mask path for SVG fragment masks. */
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask: var(--scene-mask);
+  }
+
+  .timed-mask-reveal--strip-reveal .timed-mask-reveal__scene {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask: none;
+  }
+
+  .timed-mask-reveal__copies {
+    inset-block-end: calc(var(--space-5) + var(--target-min) + var(--space-5));
+    inset-inline: var(--page-gutter);
+    inline-size: auto;
+  }
+}

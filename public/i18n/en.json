@@ -69,7 +69,81 @@
       "qualifier": "Studio",
       "soundOff": "Sound off",
       "soundOn": "Sound on",
-      "title": "Interiors shaped by light, material and place."
+      "title": "Interiors shaped by light, material and place.",
+      "scenes": {
+        "studio": {
+          "index": "01",
+          "eyebrow": "Casa Mar / Studio",
+          "title": "A home shaped by light",
+          "description": "A quiet study of proportion, material and place.",
+          "imageAlt": "Sunlit Casa Mar interior"
+        },
+        "living": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Living",
+          "title": "Rooms for gathering",
+          "description": "Natural textures and measured light create a calm rhythm.",
+          "imageAlt": "Living space with warm natural materiality"
+        },
+        "kitchen": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Kitchen",
+          "title": "Material in use",
+          "description": "A precise setting for everyday rituals and gathering.",
+          "imageAlt": "Contemporary kitchen with a marble island and natural light"
+        },
+        "bathroom": {
+          "index": "03",
+          "eyebrow": "Casa Mar / Bath",
+          "title": "Quiet restoration",
+          "description": "Stone, water and soft light bring the room into balance.",
+          "imageAlt": "Stone bathroom with a freestanding bath and shower"
+        },
+        "outdoor": {
+          "index": "04",
+          "eyebrow": "Casa Mar / Exterior",
+          "title": "Life beyond the threshold",
+          "description": "A shaded outdoor room in dialogue with the landscape.",
+          "imageAlt": "Outdoor lounge framed by tropical planting and mountain landscape"
+        }
+      },
+      "orbit": {
+        "orange": {
+          "index": "02",
+          "eyebrow": "Casa Mar / Amber",
+          "title": "Golden hour",
+          "description": "A warm study of timber, stone and the last light.",
+          "imageAlt": "Golden Casa Mar interior by the sea"
+        },
+        "blue": {
+          "index": "03",
+          "eyebrow": "Casa Mar / Blue",
+          "title": "Coastal dusk",
+          "description": "Cool material tones frame the sea at day’s end.",
+          "imageAlt": "Blue-toned Casa Mar interior by the sea"
+        },
+        "yellow": {
+          "index": "04",
+          "eyebrow": "Casa Mar / Light",
+          "title": "Sunlit living",
+          "description": "A calm room opened to the Mediterranean horizon.",
+          "imageAlt": "Sunlit Casa Mar interior by the sea"
+        },
+        "red": {
+          "index": "05",
+          "eyebrow": "Casa Mar / Terracotta",
+          "title": "Evening warmth",
+          "description": "Earthy surfaces hold the colour of a soft sunset.",
+          "imageAlt": "Terracotta-toned Casa Mar interior by the sea"
+        },
+        "closetTeal": {
+          "index": "06",
+          "eyebrow": "Casa Mar / Teal",
+          "title": "Private order",
+          "description": "A cooler, more graphic study in storage and material.",
+          "imageAlt": "Teal walk-in closet"
+        }
+      }
     },
     "intro": {
       "eyebrow": "01 / Studio",
@@ -78,6 +152,67 @@
     "spaces": {
       "indexLabel": "Space index",
       "title": "02 / Spaces"
+    }
+  },
+  "comingSoon": {
+    "exploreHome": "Explore Home",
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Coming into view.",
+      "description": "We are preparing a curated collection of residential interiors.",
+      "secondaryText": "Thank you for your patience."
+    },
+    "materials": {
+      "title": "Materials",
+      "subtitle": "Curated. Timeless. Coming soon.",
+      "description": "A dedicated library of materials, finishes and textures is on the way.",
+      "secondaryText": "Thank you for your patience."
+    }
+  },
+  "studioPage": {
+    "eyebrow": "01 / Studio",
+    "title": "A considered relationship between space, light and material.",
+    "bodyPrimary": "At Casa Mar Studio, we design enduring interiors: effortless, timeless and deeply connected to place.",
+    "bodySecondary": "Our work is guided by clarity, proportion and a respect for the essential.",
+    "cta": "Explore Home",
+    "imageAlt": "Casa Mar interior framed by warm arches and a view towards the sea.",
+    "principles": {
+      "light": {
+        "title": "Light",
+        "description": "We shape natural light to create atmosphere and wellbeing."
+      },
+      "materiality": {
+        "title": "Materiality",
+        "description": "We use honest, tactile materials that age beautifully and tell a story."
+      },
+      "proportion": {
+        "title": "Proportion",
+        "description": "We compose balanced spaces with intent and restraint."
+      },
+      "calmLiving": {
+        "title": "Calm Living",
+        "description": "We design for slower moments and a life well lived."
+      }
+    }
+  },
+  "spacesPage": {
+    "eyebrow": "02 / Spaces",
+    "title": "Spaces designed for daily rituals.",
+    "subtitle": "Different moments, one cohesive feeling.",
+    "bodyPrimary": "We shape each space with intention—balancing light, material, and flow to elevate the everyday.",
+    "bodySecondary": "From quiet mornings to shared evenings, every detail is considered.",
+    "cta": "Explore Home",
+    "gallery": {
+      "bedroom": {
+        "title": "Bedrooms",
+        "description": "Restful rooms composed through soft light, linen and quiet views.",
+        "imageAlt": "Mediterranean bedroom opening towards the sea."
+      },
+      "dining": {
+        "title": "Dining",
+        "description": "Gathering spaces shaped by stone, timber and the changing day.",
+        "imageAlt": "Mediterranean dining room with a sculptural stone table."
+      }
     }
   },
   "footer": {
@@ -106,6 +241,22 @@
     "home": {
       "description": "A provisional editorial introduction to Casa Mar Studio, architecture and interiors.",
       "title": "Casa Mar Studio — Architecture and interiors"
+    },
+    "projects": {
+      "description": "A curated collection of Casa Mar residential interiors is coming into view.",
+      "title": "Projects — Casa Mar Studio"
+    },
+    "materials": {
+      "description": "A considered library of Casa Mar materials, finishes and textures is coming soon.",
+      "title": "Materials — Casa Mar Studio"
+    },
+    "spaces": {
+      "description": "An editorial collection of Casa Mar interiors designed for daily rituals.",
+      "title": "Spaces — Casa Mar Studio"
+    },
+    "studio": {
+      "description": "The Casa Mar Studio approach to light, material, proportion and calm living.",
+      "title": "Studio — Casa Mar Studio"
     },
     "designSystem": {
       "description": "Development preview of the Casa Mar Studio design system.",

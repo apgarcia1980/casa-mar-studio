@@ -1,0 +1,19 @@
+<section #host class="depth-gallery" aria-label="Depth gallery">
+  <canvas #canvas class="depth-gallery__canvas"></canvas>
+  <div class="depth-gallery__overlay" aria-live="polite">
+    <p class="depth-gallery__index">{{ items[activeIndex]?.index }}</p>
+    <h1>{{ items[activeIndex]?.title }}</h1>
+    <p>{{ items[activeIndex]?.description }}</p>
+  </div>
+  <nav class="depth-gallery__pager" aria-label="Gallery navigation">
+    @for (item of items; track item.id; let index = $index) {
+      <button
+        type="button"
+        [attr.aria-label]="item.title"
+        [class.is-active]="index === activeIndex"
+        (click)="select(index)"
+      ></button>
+    }
+  </nav>
+  <p class="depth-gallery__hint">Scroll to explore</p>
+</section>

@@ -32,9 +32,9 @@
 }
 
 .button-link--secondary {
-  --button-color: var(--color-text);
+  --button-color: var(--button-link-color, var(--color-text));
   --button-background: transparent;
-  --button-border: var(--color-border-strong);
+  --button-border: var(--button-link-border, var(--color-border-strong));
 }
 
 .button-link--text {

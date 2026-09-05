@@ -1,0 +1,33 @@
+<section class="studio-page">
+  <div class="studio-page__frame">
+    <div class="studio-page__lines" aria-hidden="true"></div>
+    <div class="studio-page__content">
+      <p class="studio-page__eyebrow type-label">{{ i18n.t('studioPage.eyebrow') }}</p>
+      <h1>{{ i18n.t('studioPage.title') }}</h1>
+      <div class="studio-page__body">
+        <p>{{ i18n.t('studioPage.bodyPrimary') }}</p>
+        <p>{{ i18n.t('studioPage.bodySecondary') }}</p>
+      </div>
+      <app-button-link [path]="homePath" variant="secondary">
+        {{ i18n.t('studioPage.cta') }} <span aria-hidden="true">→</span>
+      </app-button-link>
+      <dl class="studio-page__principles">
+        @for (principle of principles; track principle.title) {
+          <div>
+            <dt>{{ principle.title }}</dt>
+            <dd>{{ principle.description }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+    <figure class="studio-page__media">
+      <img
+        src="/media/coming-soon/projects-light.png"
+        [alt]="i18n.t('studioPage.imageAlt')"
+        width="1672"
+        height="941"
+        fetchpriority="high"
+      />
+    </figure>
+  </div>
+</section>
