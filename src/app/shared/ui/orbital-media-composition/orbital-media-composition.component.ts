@@ -108,9 +108,11 @@ export class OrbitalMediaCompositionComponent {
         const slots = compact
           ? [
               { x: 0, y: 0, z: 36, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 1, zIndex: 5 },
-              { x: 0, y: -66, z: -54, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.74, zIndex: 3 },
-              { x: 0, y: -132, z: -92, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.5, zIndex: 2 },
-              { x: 0, y: 66, z: 10, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.86, zIndex: 4 },
+              { x: 0, y: -78, z: -54, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.72, zIndex: 3 },
+              // Keep this fourth card outside the mobile composition. The other
+              // three retain the depth sequence without turning into a dense stack.
+              { x: 0, y: -156, z: -92, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0, zIndex: 1 },
+              { x: 0, y: 78, z: 10, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.82, zIndex: 4 },
             ]
           : [
               { x: 0, y: 0, z: 72, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 1, zIndex: 5 },
