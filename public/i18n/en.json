@@ -201,7 +201,19 @@
     "subtitle": "Different moments, one cohesive feeling.",
     "bodyPrimary": "We shape each space with intention—balancing light, material, and flow to elevate the everyday.",
     "bodySecondary": "From quiet mornings to shared evenings, every detail is considered.",
-    "cta": "Explore Home"
+    "cta": "Explore Home",
+    "gallery": {
+      "bedroom": {
+        "title": "Bedrooms",
+        "description": "Restful rooms composed through soft light, linen and quiet views.",
+        "imageAlt": "Mediterranean bedroom opening towards the sea."
+      },
+      "dining": {
+        "title": "Dining",
+        "description": "Gathering spaces shaped by stone, timber and the changing day.",
+        "imageAlt": "Mediterranean dining room with a sculptural stone table."
+      }
+    }
   },
   "footer": {
     "brandNote": "A provisional digital foundation for architecture, interiors and materiality.",

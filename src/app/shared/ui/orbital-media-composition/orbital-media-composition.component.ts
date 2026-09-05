@@ -35,6 +35,7 @@ export class OrbitalMediaCompositionComponent {
   private readonly root = viewChild<ElementRef<HTMLElement>>('root');
   private cleanup: () => void = () => undefined;
   private setPlayback: (paused: boolean) => void = () => undefined;
+  private initializationId = 0;
 
   readonly items = input.required<readonly OrbitalMediaItem[]>();
   readonly paused = input(false);
@@ -45,7 +46,14 @@ export class OrbitalMediaCompositionComponent {
 
   constructor() {
     afterNextRender(() => void this.initialize());
-    this.destroyRef.onDestroy(() => this.cleanup());
+    this.destroyRef.onDestroy(() => {
+      // Decoding images and loading GSAP are asynchronous. Invalidate that work
+      // before reverting so a stale initializer can never animate a new Home view.
+      this.initializationId += 1;
+      this.cleanup();
+      this.cleanup = () => undefined;
+      this.setPlayback = () => undefined;
+    });
     effect(() => this.setPlayback(this.paused()));
   }
 
@@ -61,25 +69,41 @@ export class OrbitalMediaCompositionComponent {
       this.platform.saveDataEnabled()
     ) return;
 
+    const initializationId = ++this.initializationId;
     const initialRoot = this.root()?.nativeElement;
     if (!initialRoot || this.destroyRef.destroyed) return;
 
     try {
       const { gsap } = await import('gsap');
+      if (this.destroyRef.destroyed || initializationId !== this.initializationId) return;
+
       const images = Array.from(initialRoot.querySelectorAll<HTMLImageElement>('[data-orbit-image]'));
       await Promise.all(images.map((image) => image.decode().catch(() => undefined)));
-      if (this.destroyRef.destroyed) return;
+      if (this.destroyRef.destroyed || initializationId !== this.initializationId) return;
 
       // Hydration can replace image nodes while decode() is pending. Resolve the
       // current host after preloading so GSAP never animates stale SSR nodes.
       const root = this.root()?.nativeElement;
-      if (!root) return;
+      if (!root || initializationId !== this.initializationId) return;
       const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-orbit-card]'));
       const copies = Array.from(root.querySelectorAll<HTMLElement>('[data-orbit-copy]'));
       if (cards.length !== this.items().length || copies.length !== cards.length) return;
 
+      // Angular updates class bindings on its render pass, whereas GSAP writes
+      // transforms synchronously. Set the enhanced class immediately so the CSS
+      // fallback translate(-50%) is gone before GSAP applies its own xPercent.
+      // Without this, both transforms are composed and cards jump to one side.
       this.enhanced.set(true);
+      root.classList.add('orbital-media--enhanced');
+
       const context = gsap.context(() => {
+        // A route can be left mid-transition. Clear every animated property before
+        // defining the first orbit state, otherwise GSAP can momentarily reuse an
+        // old x/y transform and show cards displaced to either side.
+        gsap.killTweensOf(cards);
+        gsap.set(cards, {
+          clearProps: 'transform,opacity,zIndex,willChange',
+        });
         const compact = this.platform.matchesMedia('(width < 48rem)');
         const slots = compact
           ? [
@@ -104,6 +128,7 @@ export class OrbitalMediaCompositionComponent {
         };
         let previousActive = 0;
         const applyState = (active: number, duration: number) => {
+          gsap.killTweensOf(cards);
           this.activeIndex.set(active);
           cards.forEach((card, index) => {
             const point = stateFor(index, active);
@@ -169,9 +194,24 @@ export class OrbitalMediaCompositionComponent {
         });
         this.setPlayback = (paused: boolean) => paused ? timeline.pause() : timeline.play();
       }, root);
-      this.cleanup = () => context.revert();
+      if (this.destroyRef.destroyed || initializationId !== this.initializationId) {
+        context.revert();
+        return;
+      }
+
+      this.cleanup = () => {
+        this.initializationId += 1;
+        this.setPlayback = () => undefined;
+        context.revert();
+        root.classList.remove('orbital-media--enhanced');
+        this.enhanced.set(false);
+        this.activeIndex.set(0);
+      };
     } catch {
-      this.enhanced.set(false);
+      if (initializationId === this.initializationId) {
+        initialRoot.classList.remove('orbital-media--enhanced');
+        this.enhanced.set(false);
+      }
     }
   }
 }

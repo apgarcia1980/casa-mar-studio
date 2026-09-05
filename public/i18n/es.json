@@ -201,7 +201,19 @@
     "subtitle": "Momentos distintos, una sensación coherente.",
     "bodyPrimary": "Damos forma a cada espacio con intención, equilibrando luz, materia y fluidez para elevar lo cotidiano.",
     "bodySecondary": "De las mañanas tranquilas a las noches compartidas, cada detalle está pensado.",
-    "cta": "Explorar Inicio"
+    "cta": "Explorar Inicio",
+    "gallery": {
+      "bedroom": {
+        "title": "Dormitorios",
+        "description": "Estancias de descanso compuestas mediante luz suave, lino y vistas serenas.",
+        "imageAlt": "Dormitorio mediterráneo abierto hacia el mar."
+      },
+      "dining": {
+        "title": "Comedor",
+        "description": "Espacios para reunirse definidos por piedra, madera y el paso del día.",
+        "imageAlt": "Comedor mediterráneo con una mesa escultural de piedra."
+      }
+    }
   },
   "footer": {
     "brandNote": "Una base digital provisional para arquitectura, interiorismo y materialidad.",
