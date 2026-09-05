@@ -87,6 +87,7 @@ export class DepthGalleryComponent implements AfterViewInit, OnDestroy {
   private velocity = 0;
   private pointerTarget = new THREE.Vector2();
   private pointerCurrent = new THREE.Vector2();
+  private touchStartY = 0;
   private readonly planeGap = 5;
   private readonly maxScroll = () => Math.max(0, (this.items.length - 1) * this.planeGap * 100);
 
@@ -103,6 +104,8 @@ export class DepthGalleryComponent implements AfterViewInit, OnDestroy {
     cancelAnimationFrame(this.frameId);
     this.resizeObserver?.disconnect();
     this.hostRef.nativeElement.removeEventListener('wheel', this.onWheel);
+    this.hostRef.nativeElement.removeEventListener('touchstart', this.onTouchStart);
+    this.hostRef.nativeElement.removeEventListener('touchmove', this.onTouchMove);
     this.hostRef.nativeElement.removeEventListener('pointermove', this.onPointerMove);
     this.hostRef.nativeElement.removeEventListener('pointerleave', this.onPointerLeave);
     this.textures.forEach((texture) => texture.dispose());
@@ -137,6 +140,8 @@ export class DepthGalleryComponent implements AfterViewInit, OnDestroy {
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(this.hostRef.nativeElement);
     this.hostRef.nativeElement.addEventListener('wheel', this.onWheel, { passive: false });
+    this.hostRef.nativeElement.addEventListener('touchstart', this.onTouchStart, { passive: true });
+    this.hostRef.nativeElement.addEventListener('touchmove', this.onTouchMove, { passive: false });
     this.hostRef.nativeElement.addEventListener('pointermove', this.onPointerMove, { passive: true });
     this.hostRef.nativeElement.addEventListener('pointerleave', this.onPointerLeave, { passive: true });
     this.render(performance.now());
@@ -194,6 +199,25 @@ export class DepthGalleryComponent implements AfterViewInit, OnDestroy {
   private readonly onWheel = (event: WheelEvent): void => {
     event.preventDefault();
     this.scrollTarget = THREE.MathUtils.clamp(this.scrollTarget + event.deltaY, 0, this.maxScroll());
+  };
+
+  private readonly onTouchStart = (event: TouchEvent): void => {
+    this.touchStartY = event.touches[0]?.clientY ?? 0;
+  };
+
+  private readonly onTouchMove = (event: TouchEvent): void => {
+    const currentY = event.touches[0]?.clientY ?? this.touchStartY;
+    const deltaY = this.touchStartY - currentY;
+
+    if (deltaY === 0) return;
+
+    event.preventDefault();
+    this.scrollTarget = THREE.MathUtils.clamp(
+      this.scrollTarget + deltaY * 1.8,
+      0,
+      this.maxScroll(),
+    );
+    this.touchStartY = currentY;
   };
 
   private readonly onPointerMove = (event: PointerEvent): void => {
