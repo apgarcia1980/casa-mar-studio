@@ -107,16 +107,16 @@ export class OrbitalMediaCompositionComponent {
         const compact = this.platform.matchesMedia('(width < 48rem)');
         const slots = compact
           ? [
-              { x: 0, y: 0, z: 36, scale: 1, rotation: -2, rotationX: 0, rotationY: 2, opacity: 1, zIndex: 5 },
-              { x: -6, y: -70, z: -54, scale: 0.88, rotation: 4, rotationX: 3, rotationY: -4, opacity: 0.9, zIndex: 3 },
-              { x: 20, y: -140, z: -92, scale: 0.8, rotation: -5, rotationX: 4, rotationY: 5, opacity: 0.78, zIndex: 2 },
-              { x: 4, y: 74, z: 10, scale: 0.9, rotation: -4, rotationX: -3, rotationY: 3, opacity: 0.94, zIndex: 4 },
+              { x: 0, y: 0, z: 36, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 1, zIndex: 5 },
+              { x: 0, y: -66, z: -54, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.74, zIndex: 3 },
+              { x: 0, y: -132, z: -92, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.5, zIndex: 2 },
+              { x: 0, y: 66, z: 10, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.86, zIndex: 4 },
             ]
           : [
-              { x: 0, y: 0, z: 72, scale: 1, rotation: -2.5, rotationX: -2, rotationY: 4, opacity: 1, zIndex: 5 },
-              { x: -8, y: -88, z: -98, scale: 0.9, rotation: 6, rotationX: 5, rotationY: -7, opacity: 0.92, zIndex: 3 },
-              { x: 26, y: -176, z: -168, scale: 0.82, rotation: -8, rotationX: 8, rotationY: 7, opacity: 0.8, zIndex: 2 },
-              { x: 6, y: 92, z: 24, scale: 0.92, rotation: -5.5, rotationX: -5, rotationY: 5, opacity: 0.96, zIndex: 4 },
+              { x: 0, y: 0, z: 72, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 1, zIndex: 5 },
+              { x: 0, y: -88, z: -98, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.74, zIndex: 3 },
+              { x: 0, y: -176, z: -168, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.5, zIndex: 2 },
+              { x: 0, y: 88, z: 24, scale: 1, rotation: 0, rotationX: 0, rotationY: 0, opacity: 0.86, zIndex: 4 },
             ];
         const stateFor = (cardIndex: number, active: number) => {
           const distance = (cardIndex - active + cards.length) % cards.length;
@@ -155,12 +155,12 @@ export class OrbitalMediaCompositionComponent {
             if (duration > 0 && previousDistance === cards.length - 1 && nextDistance === 2) {
               gsap.timeline()
                 .to(card, {
-                  xPercent: -50 + 48,
+                  xPercent: -50,
                   yPercent: -50 + 132,
-                  scale: 0.68,
-                  rotation: 9,
-                  rotationX: -4,
-                  rotationY: 8,
+                  scale: 1,
+                  rotation: 0,
+                  rotationX: 0,
+                  rotationY: 0,
                   z: -120,
                   opacity: 0,
                   duration: duration * 0.25,
@@ -168,12 +168,12 @@ export class OrbitalMediaCompositionComponent {
                   overwrite: 'auto',
                 })
                 .set(card, {
-                  xPercent: -50 + 48,
+                  xPercent: -50,
                   yPercent: -50 - 196,
-                  scale: 0.68,
-                  rotation: -9,
-                  rotationX: 7,
-                  rotationY: 8,
+                  scale: 1,
+                  rotation: 0,
+                  rotationX: 0,
+                  rotationY: 0,
                   z: -150,
                 })
                 .to(card, { ...target, duration: duration * 0.75 });
